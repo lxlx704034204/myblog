@@ -20,7 +20,7 @@
 
 \3. 选择从“互联网”安装：
 
-![img](让windows cmd也用上linux命令_files/9db15efe-d83f-4bda-bb89-2184795d113b.png)
+![img](image-201803221757/9db15efe-d83f-4bda-bb89-2184795d113b.png)
 
  
 
