@@ -1,3 +1,9 @@
+[TOC]
+
+
+
+# mysql 多种批量更新update
+
 在mysql中批量更新我们可能使用update,replace into来操作，下面小编来给各位同学详细介绍mysql 批量更新与性能吧。
 
 ### **php批量更新**
@@ -129,7 +135,7 @@ void increaseWhQtyByUpdateBatch(List<SkuWhQtyUpdateRequestEntity> whQtyRequestLi
 
 #### 2.replace into 或者insert into ...on duplicate key update
 
-```
+```mysql
 replace into test_tbl (id,dr) values (1,'2'),(2,'3'),...(x,'y');
 ```
 
@@ -139,7 +145,7 @@ replace into test_tbl (id,dr) values (1,'2'),(2,'3'),...(x,'y');
 
 sql写法：
 
-```
+```mysql
 INSERT INTO warehouse_sku_stock_yxy_test (id) VALUE (2514655) ON DUPLICATE KEY UPDATE mod_dt = NOW() ,sale_qty =IFNULL(sale_qty,0) -1 ; 
 INSERT INTO warehouse_sku_stock_yxy_test (id) VALUE (2514656) ON DUPLICATE KEY UPDATE mod_dt = NOW() ,sale_qty =IFNULL(sale_qty,0) -1 ;
 ```
@@ -305,23 +311,15 @@ INSERT INTO warehouse_sku_stock_yxy_test (id, wh_seq, whg_seq, sku_seq, spu_seq,
 
 #### 固定一个入参 5商品 3特卖  40线程 dev 环境
 
- 
-
 ##### 入参：
 
 {"mode":"0","list":[{"id":"2514655","saleQty":-1,"skuSeq":"KS1201608CG240000605","uniqueKey":"CS016111001,KS1201608CG240000605","whSeq":"CS016111001","whSkuSeq":"CS016111001,KS1201608CG240000605","whgSku":"QS016111001,KS1201608CG240000605"},{"id":"2514656","saleQty":-1,"skuSeq":"KZ1201609CG190000111","uniqueKey":"CZ017033131,KZ1201609CG190000111","whSeq":"CZ017033131","whSkuSeq":"CZ017033131,KZ1201609CG190000111","whgSku":"QZ017033131,KZ1201609CG190000111"},{"id":"2514658","saleQty":-1,"skuSeq":"KZ1201608CG240000566","uniqueKey":"CZ017032653,KZ1201608CG240000566","whSeq":"CZ017032653","whSkuSeq":"CZ017032653,KZ1201608CG240000566","whgSku":"QZ017032653,KZ1201608CG240000566"},{"id":"2514659","saleQty":-1,"skuSeq":"KZ1201608CG240000567","uniqueKey":"CZ017032653,KZ1201608CG240000567","whSeq":"CZ017032653","whSkuSeq":"CZ017032653,KZ1201608CG240000567","whgSku":"QZ017032653,KZ1201608CG240000567"},{"id":"2514657","saleQty":-1,"skuSeq":"KS1201608CG250000390","uniqueKey":"CS016111001,KS1201608CG250000390","whSeq":"CS016111001","whSkuSeq":"CS016111001,KS1201608CG250000390","whgSku":"QS016111001,KS1201608CG250000390"}]}
 
- 
-
- 
+  
 
 ##### 批量update，多条用逗号分开
 
- 
-
 ![img](image-201710201045/clip_image002ff6962b7-2438-447b-bd7b-dfc278f23856.jpg)
-
- 
 
  
 
@@ -331,20 +329,18 @@ INSERT INTO warehouse_sku_stock_yxy_test (id, wh_seq, whg_seq, sku_seq, spu_seq,
 
  
 
- 
-
- 
-
- 
-
 ##### update set case when then end 
 
-#### 
+![img](image-201710201045/clip_image00691917a5f-3a86-4c72-ab3d-545b9943ffb4.jpg)
 
  
 
- ![img](image-201710201045/clip_image00691917a5f-3a86-4c72-ab3d-545b9943ffb4.jpg)
 
- 
+
+### 结论
+
+update set case when then end 更新性能最好.
+
+
 
 来源： <http://www.111cn.net/database/mysql/52275.htm>
