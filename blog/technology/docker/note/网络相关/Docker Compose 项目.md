@@ -409,7 +409,6 @@ $ docker-compose kill -s SIGINT
 
 ```
 $ docker-compose run ubuntu ping docker.com
-
 ```
 
 将会启动一个 ubuntu 服务容器，并执行 `ping docker.com` 命令。
@@ -1224,12 +1223,7 @@ Dockerfile       docker-compose.yml          django_example       manage.py     
 如果你的系统是 Linux,记得更改文件权限。
 
 ```
-
-```
-
-```
 sudo chown -R $USER:$USER .
-
 ```
 
 首先，我们要为应用设置好数据库的连接信息。用以下内容替换 `django_example/settings.py` 文件中 `DATABASES = ...` 定义的节点内容。

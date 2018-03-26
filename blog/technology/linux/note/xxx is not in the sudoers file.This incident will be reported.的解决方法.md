@@ -1,4 +1,4 @@
-# [xxx is not in the sudoers file.This incident will be reported.的解决方法](http://www.cnblogs.com/xiaochaoyxc/p/6206481.html)
+# xxx is not in the sudoers file.This incident will be reported.的解决方法
 
 1.切换到root用户下,怎么切换就不用说了吧,不会的自己百度去.
 
@@ -29,3 +29,9 @@ youuser            ALL=(ALL)                NOPASSWD: ALL
 4.撤销sudoers文件写权限,命令:<br>
 chmod u-w /etc/sudoers<br>
 这样普通用户就可以使用sudo了<br>
+
+
+
+
+
+http://www.cnblogs.com/xiaochaoyxc/p/6206481.html
