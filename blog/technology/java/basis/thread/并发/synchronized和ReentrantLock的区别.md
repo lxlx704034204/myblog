@@ -1,4 +1,8 @@
-# [synchronized和ReentrantLock的区别](http://www.cnblogs.com/fanguangdexiaoyuer/p/5313653.html)
+[TOC]
+
+
+
+# synchronized和ReentrantLock的区别
 
 转载:http://houlinyan.iteye.com/blog/1112535
 
