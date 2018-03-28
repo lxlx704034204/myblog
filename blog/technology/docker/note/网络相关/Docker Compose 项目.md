@@ -1039,7 +1039,6 @@ volumes:
  - /var/lib/mysql
  - cache/:/tmp/cache
  - ~/configs:/etc/configs/:ro
-
 ```
 
 ### 其它指令
@@ -1050,25 +1049,18 @@ volumes:
 
 ```
 entrypoint: /code/entrypoint.sh
-
 ```
 
 指定容器中运行应用的用户名。
 
 ```
-
-```
-
-```
 user: nginx
-
 ```
 
 指定容器中工作目录。
 
 ```
 working_dir: /code
-
 ```
 
 指定容器中搜索域名、主机名、mac 地址等。
@@ -1077,28 +1069,24 @@ working_dir: /code
 domainname: your_website.com
 hostname: test
 mac_address: 08-00-27-00-0C-0A
-
 ```
 
 允许容器中运行一些特权命令。
 
 ```
 privileged: true
-
 ```
 
 指定容器退出后的重启策略为始终重启。该命令对保持服务始终运行十分有效，在生产环境中推荐配置为 `always` 或者 `unless-stopped`。
 
 ```
 restart: always
-
 ```
 
 以只读模式挂载容器的 root 文件系统，意味着不能对容器内容进行修改。
 
 ```
 read_only: true
-
 ```
 
 打开标准输入，可以接受外部输入。
@@ -1111,7 +1099,6 @@ stdin_open: true
 
 ```
 tty: true
-
 ```
 
 ### 读取变量

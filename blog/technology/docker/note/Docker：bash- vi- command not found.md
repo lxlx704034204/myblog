@@ -1,3 +1,5 @@
+# Docker：bash- vi- command not found
+
 在使用[Docker](http://lib.csdn.net/base/docker)容器时，有时候里边没有安装vim，敲vim命令时提示说：vim: command not found，这个时候就需要安装vim，可是当你敲apt-get install vim命令时，提示：
 
 ```
