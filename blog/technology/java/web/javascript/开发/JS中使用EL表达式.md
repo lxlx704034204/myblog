@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 #  JS中使用EL表达式
 
 分两种情况
@@ -14,12 +18,12 @@
 
 ## 2.JS代码是单独的.js 文件, 通过引入到 JSP中来.这时候可通过提前定义JS变量的形式的解决,如:
 
-```
+```Js
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="application"/>  
-    <script>  
-        <%--JS gloable varilible--%>  
-        var contextPath = "${contextPath}";  
-    </script>  
+<script>  
+    <%--JS gloable varilible--%>  
+    var contextPath = "${contextPath}";  
+</script>  
 ```
 
 在JSP页面上定义JS变量 contextPath.
