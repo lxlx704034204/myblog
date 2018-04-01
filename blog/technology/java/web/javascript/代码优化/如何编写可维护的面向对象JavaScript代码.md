@@ -22,7 +22,7 @@
 
 以下是JavaScript中对象实例化的例子：
 
-```
+```js
  // 定义Employee类
  function Employee(num, fname, lname) {
      this.getFullName = function () {
@@ -43,35 +43,35 @@
 
 3 因为getFullName指定给this操作符了，所以是公共可用的，但是fname和lname则不是。由Employee函数产生的[闭包](http://extjs.org.cn/node/400)给了getFullName到fname和lname的入口，但同时对于其他类仍然是私有的。
 
-原型继承
+## 原型继承
 
 下面是JavaScript中原型继承的例子：
 
-```
-1 // 定义Human类
-2 function Human() {
-3     this.setName = function (fname, lname) {
-4         this.fname = fname;
-5         this.lname = lname;
-6     }
-7     this.getFullName = function () {
-8         return this.fname + " " + this.lname;
-9     }
-10 }
-11  
-12 // 定义Employee类
-13 function Employee(num) {
-14     this.getNum = function () {
-15         return num;
-16     }
-17 };
-18 //让Employee继承Human类
-19 Employee.prototype = new Human();
-20  
-21 // 实例化Employee对象
-22 var john = new Employee("4815162342");
-23     john.setName("John", "Doe");
-24 alert(john.getFullName() + "'s employee number is " + john.getNum());
+```js
+// 定义Human类
+function Human() {
+   this.setName = function (fname, lname) {
+       this.fname = fname;
+       this.lname = lname;
+   }
+   this.getFullName = function () {
+       return this.fname + " " + this.lname;
+   }
+}
+ 
+// 定义Employee类
+function Employee(num) {
+    this.getNum = function () {
+        return num;
+    }
+};
+//让Employee继承Human类
+Employee.prototype = new Human();
+ 
+// 实例化Employee对象
+var john = new Employee("4815162342");
+    john.setName("John", "Doe");
+alert(john.getFullName() + "'s employee number is " + john.getNum());
 ```
 
 这一次，创建的Human类包含人类的一切共有属性——我也将fname和lname放进去了，因为不仅仅是员工才有名字，所有人都有名字。然后将Human对象赋值给它的prototype属性。
@@ -88,17 +88,17 @@ Public（公有的）和Private（私有的）
 
 有时，你只是想要在创建对象的时候能有一个值。一旦创建，就不想要其他人再改变这个值。为了做到这点，可以创建一个私有变量，在实例化的时候给它赋值。
 
-```
-1 function Animal(type) {
-2     var data = [];
-3     data['type'] = type;
-4     this.getType = function () {
-5         return data['type'];
-6     }
-7 }
-8  
-9 var fluffy = new Animal('dog');
-10 fluffy.getType(); // 返回 'dog'
+```js
+function Animal(type) {
+    var data = [];
+    data['type'] = type;
+    this.getType = function () {
+        return data['type'];
+    }
+}
+ 
+var fluffy = new Animal('dog');
+fluffy.getType(); // 返回 'dog'
 ```
 
 在这个例子中，Animal类中创建了一个本地数组data。当 Animal对象被实例化时，传递了一个type的值并将该值放置在data数组中。因为它是私有的，所以该值无法被覆盖（Animal函数定义了它的范围）。一旦对象被实例化了，读取type值的唯一方式是调用getType方法。因为getType是在Animal中定义的，因此凭借Animal产生的闭包，getType可以进到data中。这样的话，虽可以读到对象的类型却无法改变。
@@ -109,7 +109,7 @@ Public（公有）
 
 当然也有些时候你想要任意读写某个属性的值。要实现这一点，需要使用this操作符。
 
-```
+```js
  function Animal() {
      this.mood = '';
  }
@@ -141,7 +141,7 @@ Saner参数列表
 
 在设计参数列表的时候可以让代码有前瞻性。参数列表是让别人实现你代码的主要接触点，如果没有设计好的话，是会很有问题的。你应该避免下面这样的参数列表：
 
-```
+```js
  function Person(employeeId, fname, lname, tel, fax, email, email2, dob) {
  };
 
@@ -149,20 +149,20 @@ Saner参数列表
 
 这个类十分脆弱。如果在你发布代码后想要添加一个中间名参数，因为顺序问题，你不得不在列表的最后往上加。这让工作变得尴尬。如果你没有为每个参数赋值的话，将会十分困难。例如：
 
-```
+```js
 var ara = new Person(1234, "Ara", "Pehlivanian", "514-555-1234", null, null, null, "1976-05-17");
 ```
 
 操作参数列表更整洁也更灵活的方式是使用这个模式：
 
-```
+```js
  function Person(employeeId, data) {
  };
 ```
 
 有第一个参数因为这是必需的。剩下的就混在对象的里面，这样才可以灵活运用。
 
-```
+```js
  var ara = new Person(1234, {
      fname: "Ara",
      lname: "Pehlivanian",
@@ -173,7 +173,7 @@ var ara = new Person(1234, "Ara", "Pehlivanian", "514-555-1234", null, null, nul
 
 这个模式的漂亮之处在于它即方便阅读又高度灵活。注意到fax, email和email2完全被忽略了。不仅如此，对象是没有特定顺序的，因此哪里方便就在哪里添加一个中间名参数是非常容易的：
 
-```
+```js
  var ara = new Person(1234, {
      fname: "Ara",
      mname: "Chris",
@@ -185,7 +185,7 @@ var ara = new Person(1234, "Ara", "Pehlivanian", "514-555-1234", null, null, nul
 
 类里面的代码不重要，因为里面的值可以通过索引来访问：
 
-```
+```js
  function Person(employeeId, data) {
  this.fname = data['fname'];
  };
@@ -197,7 +197,7 @@ var ara = new Person(1234, "Ara", "Pehlivanian", "514-555-1234", null, null, nul
 
 随着时间流逝，产品需求可能对你类的行为有更多的要求。而该行为却与你类的核心功能没有半毛钱关系。也有可能是类的唯一一种实现，好比在一个选项卡的面板获取另一个选项卡的外部数据时，将这个选项卡面板中的内容变灰。你可能想把这些功能放在类的里面，但是它们不属于那里。选项卡条的责任在于管理选项卡。动画和获取数据是完全不同的两码事，也必须与选项卡条的代码分开。唯一一个让你的选项卡条不过时而又将那些额外的功能排除在外的方法是，允许将行为嵌入到代码当中。换句话说，通过创建事件，让它们在你的代码中与关键时刻挂钩，例如onTabChange, afterTabChange, onShowPanel, afterShowPanel等等。那样的话，他们可以轻易地与你的onShowPanel事件挂钩，写一个将面板内容变灰的处理器，这样就皆大欢喜了。JavaScript库让你可以足够容易地做到这一点，但是你自己写也不那么难。下面是使用YUI 3的一个例子。
 
-```
+```js
 <script type="text/javascript" src="http://yui.yahooapis.com/combo?3.2.0/build/yui/yui-min.js"></script>
 <script type="text/javascript">
     YUI().use('event', function (Y) {
