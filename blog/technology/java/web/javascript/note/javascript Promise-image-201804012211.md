@@ -4,6 +4,8 @@
 
 # javascript Promise
 
+## 简介
+
 在JavaScript的世界中，所有代码都是单线程执行的。
 
 由于这个“缺陷”，导致JavaScript的所有网络操作，浏览器事件，都必须是异步执行。异步执行可以用回调函数实现：
@@ -64,6 +66,8 @@ new Promise(function () {});
 // 直接运行测试:
 console.log('支持Promise!');
 ```
+
+## Promise例子1
 
 我们先看一个最简单的Promise例子：生成一个0-2之间的随机数，如果小于1，则等待一段时间后返回成功，否则返回失败：
 
@@ -183,6 +187,10 @@ call resolve()...
 Done: 200 OK
 ```
 
+
+
+## Promise例子2
+
 可见Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了：
 
 ![promise](image-201804012211/l.png)
@@ -300,7 +308,7 @@ p.then(function (text) { // 如果AJAX成功，获得响应内容
 {"categories":[{"id":"0013738748415562fee26e070fa4664ad926c8e30146c67000","name":"编程","tag":"tech","display_order":0,"description":"","created_at":1373874841556,"updated_at":1429763779958,"version":5},{"id":"0013738748248885ddf38d8cd1b4803aa74bcda32f853fd000","name":"读书","tag":"other","display_order":1,"description":"","created_at":1373874824888,"updated_at":1429763779974,"version":5}]}
 ```
 
-
+## 并行执行异步任务
 
 除了串行执行若干异步任务外，Promise还可以并行执行异步任务。
 
