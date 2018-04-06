@@ -84,11 +84,15 @@ ${var:n}      替换为从n开始的子串
 ${var:n:len}  替换为从n开始长len的子串
 **变量扩展**
 
-${var%pattern}      去掉最小匹配的后缀   echo ${PWD%/*}   显示当前的父目录路径
+```
+$Extra open brace or missing close brace{var%pattern}      去掉最小匹配的后缀   echo ${PWD%/*}   显示当前的父目录路径
 ${var%%pattern}     去掉最大匹配的后缀
 ${var#pattern}      去掉最小匹配的前缀   
-${var##pattern}     去掉最大匹配的前缀   echo ${PWD##*/}  显示当前目录名称
+$You can't use 'macro parameter character #' in math mode{var##pattern}     去掉最大匹配的前缀   echo ${PWD##*/}  显示当前目录名称
 ${#var}             替换为变量字符个数
+```
+
+
 **特殊变量**
 $ 当前SHELL的PID
 ? 前一个命令的退出状态

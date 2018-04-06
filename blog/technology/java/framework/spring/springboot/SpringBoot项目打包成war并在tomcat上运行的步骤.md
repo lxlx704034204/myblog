@@ -74,15 +74,14 @@ public class Application {
 /**
  * 修改启动类，继承 SpringBootServletInitializer 并重写 configure 方法，外部tomcat启动
  */
-public class SpringBootStartApplication extends SpringBootServletInitializer {
+public class MySpringBootServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // 注意这里要指向原先用main方法执行的Application启动类
-        return builder.sources(Application.class);
+        return builder.sources(DemoApplication.class);
     }
 }
-
 ```
 
 ## 五、打包部署
