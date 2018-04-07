@@ -153,7 +153,7 @@ xx:
 
 然后定义这样一个类
 
-```
+```java
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

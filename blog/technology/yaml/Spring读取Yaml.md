@@ -30,7 +30,7 @@ env:
 
 配置文件
 
-```
+```xml
 <bean id="yamlMap" class="org.springframework.beans.factory.config.YamlMapFactoryBean">  
     <property name="resources">  
         <list>  
@@ -54,7 +54,7 @@ env:
 
 在应用中使用：
 
-```
+```java
 @Autowired  
 private ApplicationContext ctx;  
   
@@ -99,7 +99,7 @@ public void testYmlMap() {
 
 此处需要注意不能：
 
-```
+```java
 @Autowired  
 @Qualifier("yamlMap")  
 private Map<String, Object> yamlMap;  
