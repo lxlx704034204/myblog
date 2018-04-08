@@ -20,7 +20,7 @@ Maven可以使用`mvn package`指令对项目进行打包生成jar文件，如�
 
 在pom.xml中配置：
 
-```
+```xml
 <!--方法一：使用maven-jar-plugin和maven-dependency-plugin插件打包-->
     <build>
         <finalName>maven-packagejar-demo</finalName>

@@ -9,11 +9,87 @@
 ### YAML的基本语法规则
 
 1. 大小写敏感
+
 2. 使用缩进表示层级关系
+
 3. 缩进是使用空格，不允许使用tab
+
 4. 缩进对空格数目不敏感，相同层级需对齐
+
 5. 用“#”表示行注释
+
 6. 在单一文件中，可用连续三个连字号（---）区分多个文件。
+
+   ```yaml
+   #公共部分
+   spring:
+     profiles:
+       active: peer1 #默认的profile 
+     application:
+       name: EUREKA-HA
+
+   server:
+     port: 8761
+   spring:
+     profiles: peer1
+   eureka:
+     instance:
+       hostname: peer1
+     client:
+       serviceUrl:
+         defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+         
+   ---
+   #文件1
+   spring:
+     profiles: peer1
+   server:
+     port: 8761
+   eureka:
+     instance:
+       hostname: peer1
+     client:
+       serviceUrl:
+         defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+   ---
+   #文件2
+   spring:
+     profiles: peer2
+   server:
+     port: 8762
+   eureka:
+     instance:
+       hostname: peer2
+     client:
+       serviceUrl:
+         defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+   ---
+   #文件3
+   spring:
+     profiles: peer3
+   server:
+     port: 8763
+   eureka:
+     instance:
+       hostname: peer3
+     client:
+       serviceUrl:
+         defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+   ```
+
+
+执行:
+
+```
+java -jar xxx.jar --spring.profiles.active=test 表示使用测试环境的配置
+
+java -jar xxx.jar --spring.profiles.active=prod 表示使用生产环境的配置
+```
+
+
+
+   
+
 7. 另外，还有选择性的连续三个点号（ ... ）用来表示文件结尾。
 
 ### YAML的数据结构
