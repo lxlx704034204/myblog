@@ -38,7 +38,7 @@ Long story short, then, Spring Data JPA provides a definition to implement repos
 
 长话短说，Spring Data JPA 是在JPA规范的基础下提供了Repository层的实现，但是使用那一款ORM需要你自己去决定。
 
-![img](file:///C:/Users/Administrator/AppData/Local/YNote/data/chenyunjinhappy@163.com/f18f81d209424e0495d5557f1608f66c/clipboard.png)
+
 
 我的理解是：虽然ORM框架都实现了JPA规范，但是在不同ORM框架之间切换是需要编写的代码有一些差异，而通过使用Spring Data Jpa能够方便大家在不同的ORM框架中间进行切换而不要更改代码。并且Spring Data Jpa对Repository层封装的很好，可以省去不少的麻烦。
 

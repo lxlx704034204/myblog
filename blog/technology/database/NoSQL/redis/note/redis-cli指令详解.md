@@ -1,9 +1,5 @@
 ## redis-cli指令详解
 
-分类：[杂项](http://www.escorm.com/archives/category/uncategorized) | 发表于 2015年10月13日 星期二 下午 6:19
-
-[发表评论](http://www.escorm.com/archives/517#comments)
-
 Redis提供了丰富的命令（command）对数据库和各种数据类型进行操作，这些command可以在Linux终端使用。
 
 在编程时，比如使用Redis 的Java语言包，这些命令都有对应的方法。下面将Redis提供的命令做一总结。
