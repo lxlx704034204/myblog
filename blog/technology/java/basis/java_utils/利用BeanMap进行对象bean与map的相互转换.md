@@ -16,11 +16,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import com.feiniu.soa.rt.rtgoodsqtyservice.module.stock.vo.YxChannelStockUpdateResponseVO;
-import org.springframework.cglib.beans.BeanMap;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.springframework.cglib.beans.BeanMap;
+
 
 
 /**
@@ -64,8 +63,6 @@ public class BeanMapConvertUtil {
      * 将List<T>转换为List<Map<String, Object>>
      * @param objList
      * @return
-     * @throws JsonGenerationException
-     * @throws JsonMappingException
      * @throws IOException
      */
     public static <T> List<Map<String, Object>> objectsToMaps(List<T> objList) {
@@ -92,7 +89,7 @@ public class BeanMapConvertUtil {
      */
     public static <T> List<T> mapsToObjects(List<Map<String, Object>> maps,
                                             Class<T> clazz) throws InstantiationException,
-                                                            IllegalAccessException {
+            IllegalAccessException {
         List<T> list = Lists.newArrayList();
         if (maps != null && maps.size() > 0) {
             Map<String, Object> map = null;
