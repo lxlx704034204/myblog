@@ -28,7 +28,7 @@ private <T> TypeHandler<T> getTypeHandler(Type type, JdbcType jdbcType) {
 
 ## 配置TypeHandler
 
-```
+```xml
 <configuration>
     <typeHandlers>
       <!-- 

@@ -1,4 +1,4 @@
-# linux nohup 
+# linux  nohup 永久执行  运行jar 
 
 ## 介绍：
 
@@ -70,4 +70,8 @@ nohup不输出日志信息的方法，及linux重定向学习
 
 　　Linux下还有一个特殊的文件/dev/null，它就像一个无底洞，所有重定向到它的信息都会消失得无影无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null。
 
- 
+## linux 运行jar
+
+```
+nohup java -jar sparkle-account-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev  >/dev/null &
+```

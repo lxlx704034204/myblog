@@ -41,7 +41,7 @@ public class User {
 
 ### 自定义typeHandler继承自BaseTypeHandler
 
-```
+```java
 @MappedJdbcTypes({JdbcType.VARCHAR})
 @MappedTypes({Date.class})
 public class MyDateTypeHandler extends BaseTypeHandler<Date> {
@@ -80,7 +80,7 @@ public class MyDateTypeHandler extends BaseTypeHandler<Date> {
         <result typeHandler="org.sang.db.MyDateTypeHandler" column="regTime" javaType="java.util.Date"
                 jdbcType="VARCHAR"
                 property="regTime"/>
-    </resultMap>12345
+    </resultMap> 
 ```
 
 配置resultMap的时候我们指定了javaType和jdbcType，同时也指定了处理的typeHandler，然后在select中使用这个resultMap：
@@ -88,7 +88,7 @@ public class MyDateTypeHandler extends BaseTypeHandler<Date> {
 ```
 <select id="getUser" resultMap="userResultMap">
         select * from user4
-    </select>123
+    </select> 
 ```
 
 但是这种方式有一个缺点那就是只适用于查询操作，即在查询的过程中系统会启用我们自定义的typeHandler，会将秒数转为Date对象，但是在插入的时候却不会启用我们自定义的typeHandler，想要在插入的时候启用自定义的typeHandler，需要我们在insert节点中简单配置一下，如下：
@@ -112,7 +112,7 @@ public class MyDateTypeHandler extends BaseTypeHandler<Date> {
 ```
 <insert id="insertUser3">
         INSERT INTO user4(username,password,regTime) VALUES (#{username},#{password},#{regTime,typeHandler=org.sang.db.MyDateTypeHandler})
-    </insert>123
+    </insert> 
 ```
 
 这三种效果都是一样的，都是在插入的时候将数据Date对象转为秒数。OK，如此之后，我们就可以实现将Date对象插入数据库之后变秒数以及将数据库中的秒数读取之后自动转为Date对象了。我们来看一个简单的测试：
