@@ -1,6 +1,6 @@
  
 
-# shell脚本交互之:自动输入密码
+# shell脚本交互之:自动输入密码 expect
 
 平时在控制台输入指令如：sudo、ssh、ftp或者修改admin权限的文件时候都会要求输入password，但是在she'll脚本运行过程中该如何交互实现自动输入密码呢？
 

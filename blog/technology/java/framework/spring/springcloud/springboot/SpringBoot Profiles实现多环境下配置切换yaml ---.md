@@ -107,7 +107,7 @@ java -jar xxx.jar --spring.profiles.active=prod 表示使用生产环境的配�
 
 pom.xml配置如下：
 
-```
+```xml
 <profiles>
         <!--开发环境-->
         <profile>
@@ -160,6 +160,116 @@ pom.xml配置如下：
 ```
 
 通过执行 `mvn clean package -P ${profile}` 来指定使用哪个profile。
+
+## 三、获取profile环境
+
+环境工具类
+
+```java
+ 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+
+/**
+ * <B>Description:</B> 环境工具类  <br>
+ * <B>Create on:</B> 2016/10/31 18:48 <br>
+ * 使用说明: 参考 ProjectConfig
+ * @author xiangyu.ye
+ * @version 1.0
+ */
+public class EnvironmentUtil {
+
+    @Autowired
+    private Environment env;
+
+    public String       LOCAL = "local";//本地
+    public String       TEST  = "test"; //测试环境
+    public String       PROD  = "prod"; //生产环境
+
+    /**
+     * <B>Description:</B> 获取环境 <br>
+     * <B>Create on:</B> 2016/10/31 18:49 <br>
+     *
+     * @author xiangyu.ye
+     */
+    public String getEnvironment() {
+        String environment = "";
+        String[] activeProfiles = env.getActiveProfiles();
+        if (activeProfiles != null && activeProfiles.length > 0) {
+            environment = activeProfiles[0];
+        }
+        AssertUtil.notNullOrEmpty(environment, "获取不到环境参数！");
+        return environment;
+    }
+
+    /**
+     * <B>Description:</B> 是否是local环境 <br>
+     * <B>Create on:</B> 2016/10/31 18:49 <br>
+     *
+     * @author xiangyu.ye
+     */
+    public boolean isLocal() {
+        String environment = getEnvironment();
+        if (LOCAL.equals(environment)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * <B>Description:</B> 是否是 test环境 <br>
+     * <B>Create on:</B> 2016/10/31 18:49 <br>
+     *
+     * @author xiangyu.ye
+     */
+    public boolean isTest() {
+        String environment = getEnvironment();
+        if (TEST.equals(environment)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * <B>Description:</B> 是否是 prod 环境 <br>
+     * <B>Create on:</B> 2016/10/31 18:49 <br>
+     *
+     * @author xiangyu.ye
+     */
+    public boolean isProd() {
+        String environment = getEnvironment();
+        if (PROD.equals(environment)) {
+            return true;
+        }
+        return false;
+    }
+
+}
+
+```
+
+
+
+配置类
+
+```java
+/**
+ * <B>Description:</B> 项目配置 <br>
+ * <B>Create on:</B> 2018/4/19 下午10:16 <br>
+ *
+ * @author xiangyu.ye
+ * @version 1.0
+ */
+@Configuration
+@Import(EnvironmentUtil.class)
+public class ProjectConfig {
+
+
+}
+
+```
+
+
 
 ## 参考资料
 
