@@ -254,8 +254,6 @@ private class AutowiredMethodElement extends InjectionMetadata.InjectedElement {
 
 org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.AutowiredFieldElement#inject
 
-
-
 ```java
 
 protected void inject(Object bean, String beanName, PropertyValues pvs) throws Throwable {

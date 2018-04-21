@@ -4,7 +4,7 @@
 
 # springboot 使用Spring Boot Actuator监控应用spring-boot-starter-actuator
 
- 2018/02/06
+ 
 
 微服务的特点决定了功能模块的部署是分布式的，大部分功能模块都是运行在不同的机器上，彼此通过服务调用进行交互，前后台的业务流会经过很多个微服务的处理和传递，出现了异常如何快速定位是哪个环节出现了问题？
 
@@ -586,6 +586,41 @@ endpoints:
 endpoints.enabled = false
 endpoints.metrics.enabled = true
 ```
+
+
+
+### 启用和禁用对某个模块服务的健康检查 HealthIndicators
+
+Spring Boot在合适的时候会自动配置以下`HealthIndicators`：
+
+| 名称                                                         | 描述                             |
+| ------------------------------------------------------------ | -------------------------------- |
+| [`CassandraHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/CassandraHealthIndicator.java) | 检查Cassandra数据库状况          |
+| [`DiskSpaceHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/DiskSpaceHealthIndicator.java) | 低磁盘空间检查                   |
+| [`DataSourceHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/DataSourceHealthIndicator.java) | 检查是否能从`DataSource`获取连接 |
+| [`ElasticsearchHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/ElasticsearchHealthIndicator.java) | 检查Elasticsearch集群状况        |
+| [`JmsHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/JmsHealthIndicator.java) | 检查JMS消息代理状况              |
+| [`MailHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/MailHealthIndicator.java) | 检查邮件服务器状况               |
+| [`MongoHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/MongoHealthIndicator.java) | 检查Mongo数据库状况              |
+| [`RabbitHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/MongoHealthIndicator.java) | 检查Rabbit服务器状况             |
+| [`RedisHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/RedisHealthIndicator.java) | 检查Redis服务器状况              |
+| [`SolrHealthIndicator`](https://github.com/spring-projects/spring-boot/tree/v1.4.1.RELEASE/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/SolrHealthIndicator.java) | 检查Solr服务器状况               |
+
+```properties
+#禁用 某个 HealthIndicators
+management.health.db.enabled=false
+management.health.diskspace.enabled=false
+management.health.mongo.enabled=false
+management.health.rabbit.enabled=false
+management.health.redis.enabled=false
+management.health.solr.enabled=false
+# 禁用 以上全部HealthIndicators
+management.health.defaults.enabled=false
+```
+
+
+
+
 
 **示例代码-github**:https://github.com/ityouknow/spring-boot-examples
 
