@@ -20,6 +20,8 @@
 
 ## 二、Ribbon实现客户端的负载均衡
 
+### 项目配置
+
 我们使用spring boot 来测试。
 
 pom文件：
@@ -74,9 +76,11 @@ stores:
     listOfServers: www.baidu.com,www.jalja.org,www.163.com
 ```
 
-Ribbon的负载均衡策略
+### Ribbon的负载均衡策略
 
-1、RoundRobinRule(轮询模式) public class RoundRobinRule extends AbstractLoadBalancerRule roundRobin方式轮询选择server 轮询index，选择index对应位置的server          该策略也是ribbon的默认策略
+#### 1、RoundRobinRule(轮询模式) 
+
+public class RoundRobinRule extends AbstractLoadBalancerRule roundRobin方式轮询选择server 轮询index，选择index对应位置的server          该策略也是ribbon的默认策略
 
 ```java
 @SpringBootApplication
@@ -109,7 +113,9 @@ http://www.163.org:80
 
 
 
-2、RandomRule(随机策略) public class RandomRule extends AbstractLoadBalancerRule 随机选择一个server 在index上随机，选择index对应位置的server。
+#### 2、RandomRule(随机策略) 
+
+public class RandomRule extends AbstractLoadBalancerRule 随机选择一个server 在index上随机，选择index对应位置的server。
 
 在配置文件application.yml加入 
 
@@ -145,7 +151,9 @@ http://www.baidu.com:80
 http://www.jalja.org:80
 ```
 
-3、BestAvailableRule（并发量） public class BestAvailableRule extends ClientConfigEnabledRoundRobinRule 选择一个最小的并发请求的server 逐个考察Server，如果Server被tripped了，则忽略，在选择其中ActiveRequestsCount最小的server
+#### 3、BestAvailableRule（并发量） 
+
+public class BestAvailableRule extends ClientConfigEnabledRoundRobinRule 选择一个最小的并发请求的server 逐个考察Server，如果Server被tripped了，则忽略，在选择其中ActiveRequestsCount最小的server
 
 在配置文件application.yml加入
 
@@ -171,15 +179,23 @@ http://www.baidu.com:80
 http://www.baidu.com:80
 ```
 
-4、AvailabilityFilteringRule(服务器状态) public class AvailabilityFilteringRule extends PredicateBasedRule 过滤掉那些因为一直连接失败的被标记为circuit tripped的后端server，并过滤掉那些高并发的的后端server（active connections 超过配置的阈值） 使用一个AvailabilityPredicate来包含过滤server的逻辑，其实就就是检查status里记录的各个server的运行状态
+#### 4、AvailabilityFilteringRule(服务器状态)
+
+ public class AvailabilityFilteringRule extends PredicateBasedRule 过滤掉那些因为一直连接失败的被标记为circuit tripped的后端server，并过滤掉那些高并发的的后端server（active connections 超过配置的阈值） 使用一个AvailabilityPredicate来包含过滤server的逻辑，其实就就是检查status里记录的各个server的运行状态
 
  
 
-5、WeightedResponseTimeRule（根据响应时间） public class WeightedResponseTimeRule extends RoundRobinRule 根据响应时间分配一个weight，相应时间越长，weight越小，被选中的可能性越低。 一个后台线程定期的从status里面读取评价响应时间，为每个server计算一个weight。Weight的计算也比较简单responsetime 减去每个server自己平均的responsetime是server的权重。当刚开始运行，没有形成statas时，使用roubine策略选择server。
+#### 5、WeightedResponseTimeRule（根据响应时间） 
 
-6、RetryRule(根据策略+重试)	public class RetryRule extends AbstractLoadBalancerRule	对选定的负载均衡策略机上重试机制。	在一个配置时间段内当选择server不成功，则一直尝试使用subRule的方式选择一个可用的server
+public class WeightedResponseTimeRule extends RoundRobinRule 根据响应时间分配一个weight，相应时间越长，weight越小，被选中的可能性越低。 一个后台线程定期的从status里面读取评价响应时间，为每个server计算一个weight。Weight的计算也比较简单responsetime 减去每个server自己平均的responsetime是server的权重。当刚开始运行，没有形成statas时，使用roubine策略选择server。
 
-7、ZoneAvoidanceRule（Zone状态+服务状态）	public class ZoneAvoidanceRule extends PredicateBasedRule	复合判断server所在区域的性能和server的可用性选择server	使用ZoneAvoidancePredicate和AvailabilityPredicate来判断是否选择某个server，前一个判断判定一个zone的运行性能是否可用，剔除不可用的zone（的所有server），AvailabilityPredicate用于过滤掉连接数过多的Server。
+#### 6、RetryRule(根据策略+重试)	
+
+public class RetryRule extends AbstractLoadBalancerRule	对选定的负载均衡策略机上重试机制。	在一个配置时间段内当选择server不成功，则一直尝试使用subRule的方式选择一个可用的server
+
+#### 7、ZoneAvoidanceRule（Zone状态+服务状态）	
+
+public class ZoneAvoidanceRule extends PredicateBasedRule	复合判断server所在区域的性能和server的可用性选择server	使用ZoneAvoidancePredicate和AvailabilityPredicate来判断是否选择某个server，前一个判断判定一个zone的运行性能是否可用，剔除不可用的zone（的所有server），AvailabilityPredicate用于过滤掉连接数过多的Server。
 
  
 
