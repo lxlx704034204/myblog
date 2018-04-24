@@ -29,7 +29,7 @@ Java代码
 2.   RED, GREEN, BLANK, YELLOW  
 3. }  
 
- 
+
 
 ## 用法二：switch
 
@@ -59,7 +59,7 @@ Java代码
 18. ​    }  
 19. }  
 
- 
+
 
 ## 用法三：向枚举中添加新方法
 
@@ -103,7 +103,7 @@ Java代码
 32. ​    }  
 33. }  
 
- 
+
 
 ## 用法四：覆盖枚举的方法
 
@@ -130,7 +130,7 @@ Java代码
 15. ​    }  
 16. }  
 
- 
+
 
 ## 用法五：实现接口
 
@@ -140,50 +140,56 @@ Java代码
 
 Java代码 
 
-1. public interface Behaviour {  
-2. ​    void print();  
-3. ​    String getInfo();  
-4. }  
-5. public enum Color implements Behaviour{  
-6. ​    RED("红色", 1), GREEN("绿色", 2), BLANK("白色", 3), YELLO("黄色", 4);  
-7. ​    // 成员变量  
-8. ​    private String name;  
-9. ​    private int index;  
-10. ​    // 构造方法  
-11. ​    private Color(String name, int index) {  
-12. ​        this.name = name;  
-13. ​        this.index = index;  
-14. ​    }  
-15. //接口方法  
-16. ​    @Override  
-17. ​    public String getInfo() {  
-18. ​        return this.name;  
-19. ​    }  
-20. ​    //接口方法  
-21. ​    @Override  
-22. ​    public void print() {  
-23. ​        System.out.println(this.index+":"+this.name);  
-24. ​    }  
-25. }  
+ ```
+public interface Behaviour {  
+    void print();  
+    String getInfo();  
+}  
+public enum Color implements Behaviour{  
+    RED("红色", 1), GREEN("绿色", 2), BLANK("白色", 3), YELLO("黄色", 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+     // 构造方法  
+     private Color(String name, int index) {  
+         this.name = name;  
+         this.index = index;  
+     }  
+ //接口方法  
+     @Override  
+     public String getInfo() {  
+         return this.name;  
+     }  
+     //接口方法  
+     @Override  
+     public void print() {  
+         System.out.println(this.index+":"+this.name);  
+     }  
+ }  
+ ```
 
- 
+   ​
+
+
 
 ## 用法六：使用接口组织枚举
 
- 
-
 Java代码 
 
-1. public interface Food {  
-2. ​    enum Coffee implements Food{  
-3. ​        BLACK_COFFEE,DECAF_COFFEE,LATTE,CAPPUCCINO  
-4. ​    }  
-5. ​    enum Dessert implements Food{  
-6. ​        FRUIT, CAKE, GELATO  
-7. ​    }  
-8. }  
+ ```
+   public interface Food {  
+        enum Coffee implements Food{  
+            BLACK_COFFEE,DECAF_COFFEE,LATTE,CAPPUCCINO  
+        }  
+        enum Dessert implements Food{  
+            FRUIT, CAKE, GELATO  
+        }  
+   }  
+ ```
 
- 
+   ​
+
+
 
 ## 用法七：关于枚举集合的使用
 
