@@ -4,6 +4,10 @@
 
 【工匠若水 <http://blog.csdn.net/yanbober>】 阅读前一篇《设计模式(创建型)之单例模式(Singleton Pattern)》 <http://blog.csdn.net/yanbober/article/details/45312675>
 
+
+
+/Users/jerryye/backup/studio/AvailableCode/design_mode_设计模式/design_mode_demo/src/main/java/com/designmode/demo/builder
+
 ## **概述**
 
 建造者模式将客户端与包含多个组成部分的复杂对象的创建过程分离，客户端压根不用知道复杂对象的内部组成部分与装配方式，只需要知道所需建造者的类型即可。它关注如何一步一步创建一个的复杂对象，不同的具体建造者定义了不同的创建过程，且具体建造者相互独立，增加新的建造者非常方便，无须修改已有代码，系统具有较好的扩展性。

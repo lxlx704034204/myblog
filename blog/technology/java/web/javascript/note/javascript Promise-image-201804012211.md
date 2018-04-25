@@ -207,7 +207,7 @@ job1.then(job2).then(job3).catch(handleError);
 
 下面的例子演示了如何串行执行一系列需要异步计算获得结果的任务：
 
-```
+```js
 'use strict';
 
 var logging = document.getElementById('test-promise2-log');
@@ -249,6 +249,12 @@ p.then(multiply)
  .then(function (result) {
     log('Got value: ' + result);
 });
+```
+
+html:
+
+```
+<p id="test-promise2-log">Log:</p>
 ```
 
 执行结果
