@@ -345,7 +345,7 @@ Vue一共有10个生命周期函数，我们可以利用这些函数在vue的每
 
 javascript代码：
 
-```
+```js
  var app=new Vue({
      el:'#app',
      data:{
@@ -363,7 +363,7 @@ javascript代码：
 
 这种写法更像是在写HTML代码，就算不会写Vue的人，也可以制作页面。
 
-```
+```js
     <template id="demo2">
              <h2 style="color:red">我是template标签模板</h2>
     </template>
@@ -385,7 +385,7 @@ javascript代码：
 
 这种写模板的方法，可以让模板文件从外部引入。
 
-```
+```js
     <script type="x-template" id="demo3">
         <h2 style="color:red">我是script标签模板</h2>
     </script>
@@ -413,27 +413,74 @@ javascript代码：
 
 全局化就是在构造器的外部用Vue.component来注册，我们注册现在就注册一个<jspang></jspang>的组件来体验一下。
 
-| 123456789101112131415161718192021222324252627 | <!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <script type="text/javascript" src="../assets/js/vue.js"></script>    <title>component-1</title></head><body>    <h1>component-1</h1>    <hr>    <div id="app">        <jspang></jspang>    </div>     <script type="text/javascript">        //注册全局组件        Vue.component('jspang',{            template:`<div style="color:red;">全局化注册的jspang标签</div>`        })        var app=new Vue({            el:'#app',            data:{            }        })    </script></body></html> |
-| --------------------------------------------- | ------------------------------------------------------------ |
-|                                               |                                                              |
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-1</title>
+</head>
+<body>
+    <h1>component-1</h1>
+    <hr>
+    <div id="app">
+        <jspang></jspang>
+    </div>
+ 
+    <script type="text/javascript">
+        //注册全局组件
+        Vue.component('jspang',{
+            template:`<div style="color:red;">全局化注册的jspang标签</div>`
+        })
+        var app=new Vue({
+            el:'#app',
+            data:{
+            }
+        })
+    </script>
+</body>
+</html>
+```
 
 我们在javascript里注册了一个组件，在HTML中调用了他。这就是最简单的一个组件的编写方法，并且它可以放到多个构造器的作用域里。
 
 ### 二、局部注册组件局部注册组件和全局注册组件是向对应的，局部注册的组件只能在组件注册的作用域里进行使用，其他作用域使用无效。
 
-| 1234567891011121314151617181920212223242526 | <!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <script type="text/javascript" src="../assets/js/vue.js"></script>    <title>component-1</title></head><body>    <h1>component-1</h1>    <hr>    <div id="app">      <panda></panda>    </div>     <script type="text/javascript">        var app=new Vue({            el:'#app',            components:{                "panda":{                    template:`<div style="color:red;">局部注册的panda标签</div>`                }            }        })    </script></body></html> |
-| ------------------------------------------- | ------------------------------------------------------------ |
-|                                             |                                                              |
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-1</title>
+</head>
+<body>
+    <h1>component-1</h1>
+    <hr>
+    <div id="app">
+      <panda></panda>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">局部注册的panda标签</div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
 
 从代码中你可以看出局部注册其实就是写在构造器里，但是你需要注意的是，构造器里的components 是加s的，而全局注册是不加s的。
 
 ### 三、组件和指令的区别
 
 组件注册的是一个标签，而指令注册的是已有标签里的一个属性。在实际开发中我们还是用组件比较多，指令用的比较少。因为指令看起来封装的没那么好，这只是个人观点。
-
- 
-
-------
 
  
 
@@ -445,9 +492,35 @@ props选项就是设置和获取标签上的属性值的，例如我们有一个
 
 定义属性我们需要用props选项，加上数组形式的属性名称，例如：props:['here']。在组件的模板里读出属性值只需要用插值的形式，例如{{ here }}.
 
-| 123456789101112131415161718192021222324252627 | <!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <script type="text/javascript" src="../assets/js/vue.js"></script>    <title>component-2</title></head><body>    <h1>component-2</h1>    <hr>    <div id="app">      <panda here="China"></panda>    </div>     <script type="text/javascript">        var app=new Vue({            el:'#app',            components:{                "panda":{                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,                    props:['here']                }            }        })    </script></body></html> |
-| --------------------------------------------- | ------------------------------------------------------------ |
-|                                               |                                                              |
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-2</title>
+</head>
+<body>
+    <h1>component-2</h1>
+    <hr>
+    <div id="app">
+      <panda here="China"></panda>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,
+                    props:['here']
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
 
 上面的代码定义了panda的组件，并用props设置了here的属性值，在here属性值里传递了China给组件。
 
@@ -459,15 +532,23 @@ props选项就是设置和获取标签上的属性值的，例如我们有一个
 
 html文件：
 
-| 1    | <panda from-here="China"></panda> |
-| ---- | --------------------------------- |
-|      |                                   |
+```
+<panda from-here="China"></panda>
+```
 
 javascript文件：
 
-| 123456789 | var app=new Vue({            el:'#app',            components:{                "panda":{                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,                    props:['fromHere']                }            }        }) |
-| --------- | ------------------------------------------------------------ |
-|           |                                                              |
+```
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,
+                    props:['fromHere']
+                }
+            }
+        })
+```
 
 PS：因为这里有坑，所以还是少用-为好。
 
@@ -479,23 +560,26 @@ PS：因为这里有坑，所以还是少用-为好。
 
 Html文件：
 
-| 1    | <panda v-bind:here="message"></panda> |
-| ---- | ------------------------------------- |
-|      |                                       |
+```
+<panda v-bind:here="message"></panda>
+```
 
 javascript文件：
 
-| 123456789101112 | var app=new Vue({            el:'#app',            data:{               message:'SiChuan'             },            components:{                "panda":{                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,                    props:['here']                }            }        }) |
-| --------------- | ------------------------------------------------------------ |
-|                 |                                                              |
-
- 
-
- 
-
- 
-
-------
+```
+        var app=new Vue({
+            el:'#app',
+            data:{
+               message:'SiChuan' 
+            },
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,
+                    props:['here']
+                }
+            }
+        })
+```
 
  
 
@@ -511,35 +595,68 @@ javascript文件：
 
 我们需要先声明一个对象,对象里就是组件的内容。
 
-| 123  | var jspang = {   template:`<div>Panda from China!</div>`} |
-| ---- | --------------------------------------------------------- |
-|      |                                                           |
+```
+var jspang = {
+   template:`<div>Panda from China!</div>`
+}
+```
 
 声明好对象后在构造器里引用就可以了。
 
-| 123  | components:{    "jspang":jspang} |
-| ---- | -------------------------------- |
-|      |                                  |
+```
+components:{
+    "jspang":jspang
+}
+```
 
 html中引用
 
-| 1    | <jspang></jspang> |
-| ---- | ----------------- |
-|      |                   |
+```
+<jspang></jspang>
+```
 
 ### 二、父子组件的嵌套
 
 我们先声明一个父组件，比如叫jspang，然后里边我们加入一个city组件，我们来看这样的代码如何写。
 
-| 123456789101112131415161718192021222324252627282930313233343536 | <!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <script type="text/javascript" src="../assets/js/vue.js"></script>    <title>component-3</title></head><body>    <h1>component-3</h1>    <hr>    <div id="app">      <jspang></jspang>      </div>    <script type="text/javascript">       var city={           template:`<div>Sichuan of China</div>`       }        var jspang = {            template:`<div>                    <p> Panda from China!</p>                    <city></city>            </div>`,            components:{                "city":city            }        }        var app=new Vue({            el:'#app',            components:{                "jspang":jspang            }                   })    </script></body></html> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |
-
- 
-
- 
-
-------
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-3</title>
+</head>
+<body>
+    <h1>component-3</h1>
+    <hr>
+    <div id="app">
+      <jspang></jspang>  
+    </div>
+    <script type="text/javascript">
+       var city={
+           template:`<div>Sichuan of China</div>`
+       }
+        var jspang = {
+            template:`<div>
+                    <p> Panda from China!</p>
+                    <city></city>
+            </div>`,
+            components:{
+                "city":city
+            }
+        }
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "jspang":jspang
+            }
+           
+        })
+    </script>
+</body>
+</html>
+```
 
  
 
@@ -549,31 +666,91 @@ html中引用
 
 1.我们先在构造器外部定义三个不同的组件，分别是componentA,componentB和componentC.
 
-| 123456789 | var componentA={     template:`<div>I'm componentA</div>`} var componentB={      template:`<div>I'm componentB</div>`}var componentC={    template:`<div>I'm componentC</div>`} |
-| --------- | ------------------------------------------------------------ |
-|           |                                                              |
+```
+ var componentA={
+     template:`<div>I'm componentA</div>`
+}
+ var componentB={
+      template:`<div>I'm componentB</div>`
+}
+var componentC={
+    template:`<div>I'm componentC</div>`
+}
+```
 
 2.我们在构造器的components选项里加入这三个组件。
 
-| 12345 | components:{    "componentA":componentA,    "componentB":componentB,    "componentC":componentC,} |
-| ----- | ------------------------------------------------------------ |
-|       |                                                              |
+```
+components:{
+    "componentA":componentA,
+    "componentB":componentB,
+    "componentC":componentC,
+}
+```
 
 3.我们在html里插入component标签，并绑定who数据，根据who的值不同，调用不同的组件。
 
-| 1    | <component v-bind:is="who"></component> |
-| ---- | --------------------------------------- |
-|      |                                         |
+```
+<component v-bind:is="who"></component>
+```
 
 这就是我们的组件标签的基本用法。我们提高以下，给页面加个按钮，每点以下更换一个组件。
 
-| 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 | <!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <script type="text/javascript" src="../assets/js/vue.js"></script>    <title>component-4</title></head><body>    <h1>component-4</h1>    <hr>    <div id="app">       <component v-bind:is="who"></component>       <button @click="changeComponent">changeComponent</button>    </div>     <script type="text/javascript">        var componentA={            template:`<div style="color:red;">I'm componentA</div>`        }        var componentB={            template:`<div style="color:green;">I'm componentB</div>`        }        var componentC={            template:`<div style="color:pink;">I'm componentC</div>`        }               var app=new Vue({            el:'#app',            data:{                who:'componentA'            },            components:{                "componentA":componentA,                "componentB":componentB,                "componentC":componentC,            },            methods:{                changeComponent:function(){                    if(this.who=='componentA'){                        this.who='componentB';                    }else if(this.who=='componentB'){                        this.who='componentC';                    }else{                        this.who='componentA';                    }                }            }        })    </script></body></html> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              |                                                              |
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-4</title>
+</head>
+<body>
+    <h1>component-4</h1>
+    <hr>
+    <div id="app">
+       <component v-bind:is="who"></component>
+       <button @click="changeComponent">changeComponent</button>
+    </div>
+ 
+    <script type="text/javascript">
+        var componentA={
+            template:`<div style="color:red;">I'm componentA</div>`
+        }
+        var componentB={
+            template:`<div style="color:green;">I'm componentB</div>`
+        }
+        var componentC={
+            template:`<div style="color:pink;">I'm componentC</div>`
+        }
+       
+        var app=new Vue({
+            el:'#app',
+            data:{
+                who:'componentA'
+            },
+            components:{
+                "componentA":componentA,
+                "componentB":componentB,
+                "componentC":componentC,
+            },
+            methods:{
+                changeComponent:function(){
+                    if(this.who=='componentA'){
+                        this.who='componentB';
+                    }else if(this.who=='componentB'){
+                        this.who='componentC';
+                    }else{
+                        this.who='componentA';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
 
  
-
-
 
 
 
