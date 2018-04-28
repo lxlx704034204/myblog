@@ -153,9 +153,7 @@ npm install 模块 --save-dev
 
 使用 npm install node_module –save-dev 自动更新 devDependencies 字段值;
 
-dependencie 配置当前程序所依赖的其他包.
-
-devDependencie 配置当前程序所依赖的其他包,只会下载模板,而不下载这些模板的测试 和文档框架
+ 
 
 ```
 "dependencies": {
