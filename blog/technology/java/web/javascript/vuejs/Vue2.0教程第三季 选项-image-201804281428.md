@@ -292,6 +292,201 @@ var btn={
 
  
 
+## 第4节：Watch 选项 监控数据
+
+数据变化的监控经常使用，我们可以先来看一个简单的数据变化监控的例子。例如天气预报的穿衣指数，它主要是根据温度来进行提示的，当然还有其它的，咱们就不考虑了。
+
+### 一、看一个监控变化的案例
+
+温度大于26度时，我们建议穿T恤短袖，温度小于26度大于0度时，我们建议穿夹克长裙，温度小于0度时我们建议穿棉衣羽绒服。
+
+先来模拟一个温度变化的情况：我们使用按钮来加减温度。
+
+http://jsrun.net/UZkKp/embedded/result,js,html/light/#Result
+
+### 二、用实例属性写watch监控
+
+有些时候我们会用实例属性的形式来写watch监控。也就是把我们watch卸载构造器的外部，这样的好处就是降低我们程序的耦合度，使程序变的灵活。
+
+```
+app.$watch('xxx',function(){})
+```
+
+还是上边的案例我们改成实例方法的模式。
+
+```
+app.$watch('temperature',function(newVal,oldVal){
+    if(newVal>=26){
+        this.suggestion=suggestion[0];
+    }else if(newVal<26 && newVal >=0)
+    {
+        this.suggestion=suggestion[1];
+    }else{
+        this.suggestion=suggestion[2];
+    }
  
+})
+```
+
+效果和上面是一样的。 
+
+
+
+## 第5节：Mixins 混入选项操作
+
+Mixins一般有两种用途：
+
+1、在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用混入会减少源代码的污染。
+
+2、很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。
+
+### 一、Mixins的基本用法
+
+我们现在有个数字点击递增的程序，假设已经完成了，这时我们希望每次数据变化时都能够在控制台打印出提示：“数据发生变化”.
+
+代码实现过程:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Mixins Option Demo</title>
+</head>
+<body>
+    <h1>Mixins Option Demo</h1>
+    <hr>
+    <div id="app">
+        <p>num:{{ num }}</p>
+        <P><button @click="add">增加数量</button></P>
+    </div>
+ 
+    <script type="text/javascript">
+        //额外临时加入时，用于显示日志
+        var addLog={
+            updated:function(){
+                console.log("数据放生变化,变化成"+this.num+".");
+            }
+        }
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            },
+            mixins:[addLog]//混入
+        })
+    </script>
+</body>
+</html>
+```
+
+
+
+### 二、mixins的调用顺序
+
+从执行的先后顺序来说，都是混入的先执行，然后构造器里的再执行，需要注意的是，这并不是方法的覆盖，而是被执行了两边。
+
+在上边的代码的构造器里我们也加入了updated的钩子函数：
+
+```
+updated:function(){
+      console.log("构造器里的updated方法。")
+},
+```
+
+这时控制台输出的顺序是：
+
+```
+mixins数据放生变化,变化成2.
+构造器里的updated方法。
+```
+
+PS：当混入方法和构造器的方法重名时，混入的方法无法展现，也就是不起作用。
+
+### 三、全局API混入方式
+
+我们也可以定义全局的混入，这样在需要这段代码的地方直接引入js，就可以拥有这个功能了。我们来看一下全局混入的方法：
+
+```
+Vue.mixin({
+    updated:function(){
+        console.log('我是全局被混入的');
+    }
+})
+```
+
+PS：全局混入的执行顺序要前于混入和构造器里的方法。
+
+## 第6节：Extends Option  扩展选项
+
+通过外部增加对象的形式，对构造器进行扩展。它和我们上节课讲的混入非常的类似。
+
+### 一、extends我们来看一个扩展的实例。
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Extends Optin Demo</title>
+</head>
+<body>
+    <h1>Extends Optin Demo</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+        <p><button @click="add">add</button></p>
+    </div>
+ 
+    <script type="text/javascript">
+        var bbb={
+            created:function(){
+                console.log("我是被扩展出来的");
+            },
+            methods:{
+                add:function(){
+                    console.log('我是被扩展出来的方法！');
+                }
+            }
+        };
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            methods:{
+                add:function(){
+                    console.log('我是原生方法');
+                }
+            },
+            extends:bbb
+        })
+    </script>
+</body>
+</html>
+```
+
+
+
+### 二、delimiters 选项
+
+因为这节课内容比较少，所以我们把要讲的最后一个选项一起讲了。delimiters的作用是改变我们插值的符号。Vue默认的插值是双大括号{{}}。但有时我们会有需求更改这个插值的形式。
+
+```
+delimiters:['${','}']
+```
+
+现在我们的插值形式就变成了${}。
+
+这季的内容就这些了，我们下季见吧。
+
+
 
 http://jspang.com/2017/03/26/vue3/

@@ -171,19 +171,17 @@ elm.className = (c === '') ? newclass : c+' '+newclass;
 
 而更优雅的写法是：
 
-```
+```js
 function addclass(elm,newclass){
-var classes = elm.className.split(' ');
-classes.push(newclass);
-elm.className = classes.join(' ');
+	var classes = elm.className.split(' ');
+	classes.push(newclass);
+	elm.className = classes.join(' ');
 }
 ```
 
 ## **（4）事件委托**
 
 事件是JavaScript非常重要的一部分。我们想给一个列表中的链接绑定点击事件，一般的做法是写一个循环，给每个链接对象绑定事件，HTML代码如下：
-
- 
 
 ```
 h2>Great Web resources
