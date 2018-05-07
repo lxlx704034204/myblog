@@ -73,5 +73,5 @@ nohup不输出日志信息的方法，及linux重定向学习
 ## linux 运行jar
 
 ```
-nohup java -jar sparkle-account-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev  >/dev/null &
+nohup java  -Xms512m -Xmx512m -jar sparkle-account-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev  >/dev/null &
 ```
