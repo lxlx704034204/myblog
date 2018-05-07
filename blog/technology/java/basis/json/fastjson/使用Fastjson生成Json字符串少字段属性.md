@@ -6,7 +6,7 @@
 
 这是节点对象文件Node.java
 
-```
+```java
 package per.eblink.pojo;
  
 public class Node {
@@ -58,7 +58,7 @@ public class Node {
 
 接下来是测试用例JsonTest.java
 
-```
+```java
 package per.eblink.test;
  
 import com.alibaba.fastjson.JSON;
@@ -107,7 +107,7 @@ Gson生成字符串是：{"id":"2","pId":"1","name":"节点1","open":true}
 
 1，多写一个get方法
 
-```
+```java
 package per.eblink.pojo;
  
 public class Node {

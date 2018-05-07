@@ -74,7 +74,27 @@ String tomcatPath = classesPath.split("webapps")[0]+"webapps";
 
 ### 获取工程路径
 
+```java
+import org.springframework.core.io.DefaultResourceLoader;
+
+
 // 获取文件分隔符
+String separator = File.separator;
+
+// 获取工程路径
+File projectPath = new DefaultResourceLoader().getResource("").getFile();
+
+//F:\backup\studio\AvailableCode\framework\freemarker\jeesite_hibernate\src\main\webapp\WEB-INF\classes
+System.out.println(projectPath);
+
+while (!new File(projectPath.getPath() + separator + "src" + separator + "main").exists()) {
+    projectPath = projectPath.getParentFile();
+}
+
+//Project Path: {}F:\backup\studio\AvailableCode\framework\freemarker\jeesite_hibernate
+System.out.println("Project Path: {}" + projectPath);
+
+```
 
 String separator = File.separator;
 
