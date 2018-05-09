@@ -10,7 +10,7 @@
 ## 测试类：
 
 ```java
-package com.practice.base64;
+ 
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class TestBase64Convert {
 ## Base64AndFileConvertUtils 类：
 
 ```java
-package com.practice.base64;
+ 
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
