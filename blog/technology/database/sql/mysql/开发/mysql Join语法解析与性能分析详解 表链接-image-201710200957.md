@@ -1,19 +1,12 @@
-# Mysql Join语法解析与性能分析详解
+[TOC]
 
-分类: database
-日期: 2015-08-30
 
-原文地址: 
 
-http://blog.chinaunix.net/uid-29632145-id-5178166.html
+# mysql Join语法解析与性能分析详解 表链接 
 
-------
+ 
 
-****[Mysql Join语法解析与性能分析详解]() *2015-08-30 10:42:55*
-
-分类： Mysql/postgreSQL
-
-## 一．[Join语法](http://www.cnblogs.com/Mysql%20Join%E8%AF%AD%E6%B3%95%E8%A7%A3%E6%9E%90%E4%B8%8E%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E8%AF%A6%E8%A7%A3)概述
+## 一.Join语法概述
 
 join 用于多表中字段之间的联系，语法如下：
 
