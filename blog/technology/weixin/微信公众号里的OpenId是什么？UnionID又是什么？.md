@@ -13,3 +13,29 @@
 
 
 https://www.kancloud.cn/qq2864694601/liangbo_xiaochengxu/368564
+
+
+
+
+
+
+
+
+
+[UnionID和微信登陆的野心是“连接一切”](https://link.jianshu.com?t=https://www.huxiu.com/article/36734/1.html)
+
+UnionID机制，官方的解释是：
+
+通过获取用户基本信息接口，开发者可通过OpenID来获取用户基本信息，而如果开发者拥有多个公众号，可使用以下办法通过UnionID机制来在多公众号之间进行用户帐号互通。只要是同一个微信开放平台帐号下的公众号，用户的UnionID是唯一的。换句话说，同一用户，对同一个微信开放平台帐号下的不同应用，UnionID是相同的。
+
+此前的OpenID机制，每个微信号对应每个公众号只有唯一的OpenID，所以不同微信公众号之间是不能共享用户的，现在有了UnionID就可以了。
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
