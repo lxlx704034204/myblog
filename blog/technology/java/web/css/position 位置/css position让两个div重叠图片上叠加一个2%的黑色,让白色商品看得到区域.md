@@ -21,6 +21,7 @@
         }
 
         .inside-img {
+            /*如果原来图片有float 则需要把相关配置复制到outside-div*/
             width: 100px;
             height: 100px;
             position: absolute;
@@ -41,7 +42,7 @@
 <div class="outside-div">
     <!--图片层-->
     <img class="inside-img" src="img/e93a908d1823fb7c66453e55b25ec136@_320w_320h_1e_1c_0i_90Q_1x_2o.jpg">
-    <!--遮罩层 放下面会在上面那一层的上面,否则得设置 z-index--->
+    <!--遮罩层 放下面会在上面那一层的上面,否则得设置 z-index-->
     <div class="inside-div"></div>
 </div>
 
