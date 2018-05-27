@@ -343,7 +343,7 @@ module.exports={
 
 ### 设置webpack-dev-server
 
-要执行webpack-dev-server是要先用npm install webpack-dev-server –save-dev 来进行下载的。下载好后，需要配置一下devServer。最简单的devServer**配置项只有四个**。先看一下代码，然后我再作解释。
+要执行webpack-dev-server是要先用npm install webpack-dev-server --save-dev 来进行下载的。下载好后，需要配置一下devServer。最简单的devServer**配置项只有四个**。先看一下代码，然后我再作解释。
 
 **/webpack.config.js**
 
