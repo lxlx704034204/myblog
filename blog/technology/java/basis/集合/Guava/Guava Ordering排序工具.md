@@ -24,7 +24,7 @@
                 return -foo.getPopulation();  //降序  默认是升序
             }
         });
-        //排序打印结果
+        //排序 
         Collections.sort(cities, ordering);
         for (City city : cities) {
             System.out.println(city);
