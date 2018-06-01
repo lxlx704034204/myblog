@@ -8,7 +8,7 @@
 
 Spring bean 假设有如下类
 
-```
+```java
 public class Service implement IService{
     @Transactional(readOnly = false, propagation=Propagation.REQUIRED)   
     public void methodA(){
@@ -24,7 +24,7 @@ public class Service implement IService{
 }
 ```
 
-```
+```java
 public class ServiceFacade{
     @Autowired
     private Iservice service;

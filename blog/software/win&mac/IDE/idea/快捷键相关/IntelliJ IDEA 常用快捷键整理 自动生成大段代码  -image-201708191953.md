@@ -74,6 +74,20 @@ Iter：for(SysUserVO sysUserVO:arrayList)
 
 
 
+
+
+```
+iter    Iterate (for each..in)   
+itin    Iterate (for..in)   
+itli    Iterate over a List  
+itar    Iterate elements of array   
+ritar   Iterate elements of array in reverse order   
+```
+
+快捷键：ctrl+J
+
+在弹出框会有更多选择。
+
 ## idea代码折叠
 
 在intelliJ idea中不仅可以对类、方法等结构的代码进行折叠（ctrl+-）还可以自定义折叠代码。intelliJ支持两种风格的自定义代码折叠，如下：
