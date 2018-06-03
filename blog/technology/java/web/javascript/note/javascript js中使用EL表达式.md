@@ -8,6 +8,8 @@
 
 ## 1.JS代码在JSP页面中, 这可以直接使用EL表达式. 如:
 
+在js中使用el表达式，一定要使用引号括起来。如果返回的json中包括双引号，那么就使用单引号包围el表达式，否则，使用双引号。
+
 ```
 <script type="text/javascript">  
     $(function () {  
