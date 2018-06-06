@@ -106,6 +106,7 @@ git config core.sparsecheckout true
 #需要拉取的目录
 echo "xxxxx-account" >> .git/info/sparse-checkout
 echo "xxxxx-goods" >> .git/info/sparse-checkout
+echo "/pom.xml"
 #拉取指定分支
 git pull origin dev
 ```
