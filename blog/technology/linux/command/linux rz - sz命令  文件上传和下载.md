@@ -104,7 +104,7 @@ ln -s /usr/local/bin/lsz sz
 
 
 
-### Linux文件夹打包发送到本地
+#### Linux文件夹打包发送到本地
 
 ```
 tar -cvf script.tar script

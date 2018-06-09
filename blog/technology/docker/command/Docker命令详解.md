@@ -315,9 +315,17 @@ Run a command in a new container 在新的容器中运行一个命令
  -e 设置容器运行所需要的环境变量
  -d 在后台运行容器并打印容器ID
  -v 一个宿主机上的目录挂载到镜像里,具体查看文章：docker run -v 挂载本地目录
- --tty , -t		分配一个伪TTY
+ --tty , -t		分配一个伪TTY , 有了这个,创建linux容器才不会启动容器的马上关闭
  --rm 退出时自动移除容器
  --network string	将容器连接到网络（默认“默认”）Connect a container to a network (default "default")
+ 
+ 
+docker指令：docker run -p ip:hostPort:containerPort redis
+
+使用-p参数会分配宿主机的端口映射到虚拟机。 
+IP表示主机的IP地址。 
+hostPort表示宿主机的端口。 
+containerPort表示虚拟机的端口。
 ```
 
 ## 镜像管理命令：
