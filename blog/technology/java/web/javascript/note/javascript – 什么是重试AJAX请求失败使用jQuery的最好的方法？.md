@@ -14,7 +14,7 @@ $(document).ajaxError(function(e, xhr, options, error) {
 
 ## 答案
 
-```
+```js
 $.ajax({
     url : 'someurl',
     type : 'POST',
