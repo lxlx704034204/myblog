@@ -39,25 +39,23 @@ try {
 
 
 ```java
-    @Resource(name = "mainTransactionManager")
-    private DataSourceTransactionManager mainTransactionManager;
+@Resource(name = "mainTransactionManager")
+private DataSourceTransactionManager mainTransactionManager;
     
  
- DefaultTransactionDefinition transDefinition = new DefaultTransactionDefinition();
- //配置事务属性为开启新事物
- transDefinition
-         .setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
- //这里会获取数据库连接并传入配置事务属性
- TransactionStatus transStatus = mainTransactionManager.getTransaction(transDefinition);
-        
+//这里会获取数据库连接并传入配置事务属性
+TransactionStatus transStatus = mainTransactionManager.getTransaction(new DefaultTransactionDefinition());
+ 
         
 try {
 
     // todo 处理具体需要事务的逻辑
 
-    transactionManager.commit(transStatus);
+    
+    mainTransactionManager.commit(transStatus);
 } catch (Exception e) {
-    transactionManager.rollback(transStatus);
+    mainTransactionManager.rollback(transStatus);
+    //异常处理
 } 
 ```
 
