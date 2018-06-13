@@ -14,7 +14,7 @@
 
 　　jquery是一个轻量级的JS框架，这点相信大部分人都听过，而jquery之所以有这样一个称呼，就是因为它悄悄披了一件外衣，将自己给隐藏了起来。
 
-```
+```js
 //以下截取自jquery源码片段
 (function( window, undefined ) {
    /*    源码内容    */
@@ -84,7 +84,7 @@ window.jQuery = window.$ = jQuery;
 
 　　首先我们进入jquery源码中，可以很容易的找到jquery对象的声明，看过以后会发现，原来我们的jquery对象就是init对象。
 
-```
+```js
     jQuery = function( selector, context ) {
         return new jQuery.fn.init( selector, context, rootjQuery );
     }
@@ -92,7 +92,7 @@ window.jQuery = window.$ = jQuery;
 
 　　这里出现了jQuery.fn这样一个东西，它的由来可以在jquery的源码中找到，它其实代表的就是jQuery对象的原型。
 
-```
+```js
 jQuery.fn = jQuery.prototype;
 jQuery.fn.init.prototype = jQuery.fn;
 ```
