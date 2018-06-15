@@ -38,7 +38,7 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 
 在本例中，我们将使用 encodeURI() 对 URI 进行编码：
 
-```
+```js
 <script type="text/javascript">
 
 document.write(encodeURI("http://www.w3school.com.cn")+ "<br />")
@@ -50,7 +50,7 @@ document.write(encodeURI(",/?:@&=+$#"))
 
 输出：
 
-```
+```js
 http://www.w3school.com.cn
 http://www.w3school.com.cn/My%20first/
 ,/?:@&=+$#

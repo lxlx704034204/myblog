@@ -1,10 +1,10 @@
-# jquery easyui 1.3.3 combox select验证下拉框的value 必填
+# jquery easyui 1.3.3 combobox select验证下拉框的value 必填
 
  
 
 在使用jquery easyui 1.3.3的时候，发现combox下来框只验证text不验证value,满足不了需求，现进行扩展！
 
-```
+```js
 <select id="cc" class="easyui-combobox">     
     <option value="">请选择</option>     
     <option value="1">bitem1</option>     
@@ -14,7 +14,7 @@
 
 扩展验证代码：
 
-```
+```js
 /** 
  * 扩展combox验证，easyui原始只验证select text的值，不支持value验证 
  */  
@@ -33,7 +33,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 
 使用方法：
 
-```
+```js
 <select class="easyui-combobox" id="cc" validType="comboxValidate['cc','请选择状态']">     
     <option value="">请选择</option>     
     <option value="1">bitem1</option>     
