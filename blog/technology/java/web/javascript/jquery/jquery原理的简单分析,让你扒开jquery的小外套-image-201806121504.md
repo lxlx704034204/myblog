@@ -125,7 +125,7 @@ jQuery.fn.init.prototype = jQuery.fn;
 
 　　实现类似jquery的ready方法的效果我们是可以简单做到的，它的实现原理就是，维护一个函数数组，然后不停的判断DOM是否加载完毕，倘若加载完毕就触发所有数组中的函数。遵循着这一思想，LZ拿出很久之前写的一个小例子，来给各位看一下。 
 
-```
+```js
 (function( window, undefined ) {
 var 
     jQuery = {
