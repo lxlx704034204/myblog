@@ -31,13 +31,75 @@ brew list 运行结果
 
 - 安装nginx可以用brew很方便地安装nginx.`sudo brew install nginx`
 - 启动nginx服务`sudo brew services start nginx`利用`http://localhost:8080`进行访问, 如果出现如下界面，说明启动成功.![img](http://upload-images.jianshu.io/upload_images/1720840-6fbb8f04793e598e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-- 查看nginx版本`nginx -v`
+- 查看nginx版本`s`
 - 关闭nginx服务`sudo brew services stop nginx`
 
 另外几个比较方便的指令
 
 - 重新加载nginx`nginx -s reload`
 - 停止nginx`nginx -s stop`
+
+
+
+1、安装
+
+```
+brew install nginx
+```
+
+2、修改配置文件
+
+```
+sudo vi /usr/local/etc/nginx/nginx.conf
+
+修改默认的8080端口为80
+
+修改日志文件地方
+    error_log  logs/error.log;
+
+    pid        logs/nginx.pid;
+
+    access_log  logs/access.log;
+
+按上面修改后日志文件在/usr/local/opt/nginx/logs
+```
+
+3、修改管理员权限
+
+```
+sudo chown root:wheel/usr/local/opt/nginx/bin/nginx
+sudo chmod u+s/usr/local/opt/nginx/bin/nginx
+```
+
+4、加上launchctl控制
+
+```
+mkdir -p ~/Library/LaunchAgents
+
+cp /usr/local/opt/nginx/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/
+
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+```
+
+5、启动nginx
+
+```
+sudo nginx #启动
+
+sudo nginx -t #测试配置文件是否有错
+
+sudo nginx -s reload #重启nginx
+```
+
+6、问题
+
+```
+如果出现nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"，则需要
+    sudo nginx -c /usr/local/etc/nginx/nginx.conf
+    sudo nginx -s reload
+```
+
+
 
 ## 一些常见的问题整理
 

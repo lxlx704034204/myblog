@@ -13,6 +13,8 @@
 
 在使用Spring MVC默认的Jackson时，我们可以这么做：
 
+### 继承方式
+
 ```java
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -35,6 +37,38 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 } 
 ```
+
+### 非继承方式
+
+```java
+/**
+ * <B>Description:</B> 自定义http消息转换器 <br>
+ * <B>Create on:</B> 2018/6/23 下午5:09 <br>
+ *
+ * @author xiangyu.ye
+ */
+@Bean
+public HttpMessageConverters fastJsonHttpMessageConverters() {
+    MappingJackson2HttpMessageConverter jackson2HttpMessageConverter =
+            new MappingJackson2HttpMessageConverter();
+
+    //<editor-fold desc="===>>long序列化转成string,解决js处理Long类型丢失精度的问题">
+    ObjectMapper objectMapper = new ObjectMapper();
+    SimpleModule simpleModule = new SimpleModule();
+    simpleModule.addSerializer(BigInteger.class, ToStringSerializer.instance);
+    simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+    simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+    objectMapper.registerModule(simpleModule);
+    jackson2HttpMessageConverter.setObjectMapper(objectMapper);
+    //</editor-fold>
+
+    StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    HttpMessageConverters httpMessageConverters = new HttpMessageConverters(jackson2HttpMessageConverter,stringHttpMessageConverter);
+    return httpMessageConverters;
+}
+```
+
+
 
 ## fastjson方式
 
