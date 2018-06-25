@@ -6,17 +6,35 @@
 
 只需要在Nginx的配置文件中配置以下参数：
 
-```
-location / {  
-    add_header Access-Control-Allow-Origin *;
-    add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
-    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+```Nginx
+#
+#   完全支持跨域nginx配置
+#  @author xiaowenjie https://github.com/xwjie
+#
 
-    if ($request_method = 'OPTIONS') {
-        return 204;
-    }
-} 
+server{
+	listen 80;
+	server_name b.com;
+
+	location /{
+		proxy_pass http://localhost:8080/;
+
+		add_header Access-Control-Allow-Methods *;
+		add_header Access-Control-Max-Age 3600;#用来指定本次预检请求的有效期，单位为秒，，在此期间不用发出另一条预检请求
+		add_header Access-Control-Allow-Credentials true;#该项标志着请求当中是否包含cookies信息，只有一个可选值：true（必为小写）。如果不包含cookies，请略去该项，而不是填写false。
+
+		add_header Access-Control-Allow-Origin $http_origin;
+		add_header Access-Control-Allow-Headers $http_access_control_request_headers;
+
+		if ($request_method = OPTIONS){
+			return 204;#204 无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档
+		}
+	}
+
+}
 ```
+
+
 
 > 上面配置代码即可解决问题了，不想深入研究的，看到这里就可以啦=-=
 

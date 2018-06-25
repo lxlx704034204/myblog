@@ -2,7 +2,7 @@
 
 
 
-# ajax 跨域实践demo
+# ajax 跨域实践demo-image-201806241858
 
 /Users/jerryye/backup/studio/AvailableCode/web/CORS_跨域/AjaxDemo
 
