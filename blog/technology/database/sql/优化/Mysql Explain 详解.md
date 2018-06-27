@@ -314,20 +314,18 @@ ref可以用于使用=或<=>操作符的带索引的列。
 
 在下面的例子中，MySQL可以使用ref联接来处理ref_tables：
 
+```mysql
 SELECT * FROM ref_table WHERE key_column=expr;
 
-SELECT * FROM ref_table,other_table
+SELECT * FROM ref_table,other_table WHERE ref_table.key_column=other_table.column;
 
-  WHERE ref_table.key_column=other_table.column;
-
-SELECT * FROM ref_table,other_table
-
-  WHERE ref_table.key_column_part1=other_table.column
-
-​    AND ref_table.key_column_part2=1;
+SELECT * FROM ref_table,other_table WHERE ref_table.key_column_part1=other_table.column
+AND ref_table.key_column_part2=1;
+```
 
 例如:
 
+```mysql
 mysql> drop index idx_t3_id on t3;
 
 Query OK, 1000 rows affected (0.03 sec)
@@ -355,6 +353,9 @@ mysql> explain select * from t3,t4 where t3.id=t4.accountid;
 +----+-------------+-------+------+-------------------+-----------+---------+----------------------+------+-------+
 
 2 rows in set (0.00 sec)
+```
+
+
 
 #### (5).  ref_or_null
 

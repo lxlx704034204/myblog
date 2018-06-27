@@ -4,14 +4,16 @@
 
 使用() -> {} 替代匿名类：
 
-```
-//Before Java 8:new Thread(new Runnable() {
+```java
+//Before Java 8:
+new Thread(new Runnable() {
     @Overridepublic void run() {
         System.out.println("Before Java8 ");
     }
 }).start();
 
-//Java 8 way:new Thread( () -> System.out.println("In Java8!") ).start();
+//Java 8 way:
+new Thread( () -> System.out.println("In Java8!") ).start();
      
 Output:
 too much code, for too little to do
@@ -36,7 +38,7 @@ Lambda expression rocks !!
 
 如果你曾经做过Swing 编程，你将永远不会忘记编写事件侦听器代码。使用lambda表达式如下所示写出更好的事件侦听器的代码。
 
-```
+```java
 // Before Java 8:
 JButton show =  new JButton("Show");
 show.addActionListener(new ActionListener() {
@@ -54,11 +56,9 @@ show.addActionListener((e) -> {
 
 在java 8中你可以使用Lambda表达式替代丑陋的匿名类。
 
- 
-
 ### 3.使用Lambda表达式遍历List集合
 
-```
+```java
 //Prior Java 8 :List features = Arrays.asList("Lambdas", "Default Method", 
 "Stream API", "Date and Time API");
 for (String feature : features) {
@@ -81,7 +81,7 @@ Output:LambdasDefault MethodStream APIDate and Time API
 
 为了支持函数编程，Java 8加入了一个新的包java.util.function，其中有一个接口java.util.function.Predicate是支持Lambda函数编程：
 
-```
+```java
 public static void main(args[]){
   List languages = Arrays.asList("Java", "Scala", "C++", "Haskell", "Lisp");
 
@@ -158,7 +158,7 @@ java.util.function.Predicate提供and(), or() 和 xor()可以进行逻辑操作�
 
 最流行的函数编程概念是map，它允许你改变你的对象，在这个案例中，我们将costBeforeTeax集合中每个元素改变了增加一定的数值，我们将Lambda表达式 x -> x*x传送map()方法，这将应用到stream中所有元素。然后我们使用 forEach() 打印出这个集合的元素.
 
-```
+```java
 // applying 12% VAT on each purchase// Without lambda expressions:List costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
 for (Integer cost : costBeforeTax) {
       double price = cost + .12*cost;
@@ -174,7 +174,7 @@ Output112.0224.0336.0448.0560.0112.0224.0336.0448.0560.0
 
 reduce() 是将集合中所有值结合进一个，Reduce类似SQL语句中的sum(), avg() 或count(), 
 
-```
+```java
 // Applying 12% VAT on each purchase// Old way:List costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
 double total = 0;
 for (Integer cost : costBeforeTax) {
@@ -199,7 +199,7 @@ OutputTotal : 1680.0Total : 1680.0
 
 Filtering是对大型Collection操作的一个通用操作，Stream提供filter()方法，接受一个Predicate对象，意味着你能传送lambda表达式作为一个过滤逻辑进入这个方法：
 
-```
+```java
 // Create a List with String more than 2 charactersList<String> filtered = strList.stream().filter(x -> x.length()> 2)
                                         .collect(Collectors.toList());
 System.out.printf("Original List : %s, filtered list : %s %n", 
@@ -214,7 +214,7 @@ Output :Original List : [abc, , bcd, , defg, jk], filtered list : [abc, bcd, def
 
 我们经常需要对集合中元素运用一定的功能，如表中的每个元素乘以或除以一个值等等.
 
-```
+```java
 // Convert String to Uppercase and join them using comaList<String> G7 = Arrays.asList("USA", "Japan", "France", "Germany", 
                                 "Italy", "U.K.","Canada");
 String G7Countries = G7.stream().map(x -> x.toUpperCase())
@@ -232,7 +232,7 @@ Output :USA, JAPAN, FRANCE, GERMANY, ITALY, U.K., CANADA
 
 使用Stream的distinct()方法过滤集合中重复元素。
 
-```
+```java
 // Create List of square of all distinct numbersList<Integer> numbers = Arrays.asList(9, 10, 3, 4, 7, 3, 4);
 List<Integer> distinct = numbers.stream().map( i -> i*i).distinct()
                                          .collect(Collectors.toList());
@@ -247,7 +247,7 @@ Output :Original List : [9, 10, 3, 4, 7, 3, 4],  Square Without
 
 ### 10.计算List中的元素的最大值，最小值，总和及平均值
 
-```
+```java
 //Get count, min, max, sum, and average for numbersList<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
 IntSummaryStatistics stats = primes.stream().mapToInt((x) -> x)
                                             .summaryStatistics();

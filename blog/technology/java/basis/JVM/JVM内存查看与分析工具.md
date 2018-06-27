@@ -1,14 +1,22 @@
+[TOC]
+
+
+
 # jvm 内存查看与分析工具
 
    业界有很多强大的java profile的工具，比如Jporfiler，yourkit，这些收费的东西我就不想说了，想说的是，其实java自己就提供了很多内存监控的小工具，下面列举的工具只是一小部分，仔细研究下jdk的工具，还是蛮有意思的呢：）
-
-
 
 ## **1：gc日志输出**
 
 ​       只有在gc回收的时候会作用,例如手动System.gc(),在jvm启动参数中加入 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps，jvm将会按照这些参数顺序输出gc概要信息，详细信息，gc时间信息，gc造成的应用暂停时间。如果在刚才的参数后面加入参数 -Xloggc:文件路径，gc信息将会输出到指定的文件中。其他参数还有
 
 -verbose:gc和-XX:+PrintTenuringDistribution等。
+
+```sh
+-XX:+PrintGCDateStamps -XX:+PrintGCDetails -Xloggc:../logs/gc.log 
+```
+
+
 
 ## **2：jconsole**
 
