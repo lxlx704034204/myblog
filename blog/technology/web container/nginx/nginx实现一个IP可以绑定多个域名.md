@@ -36,7 +36,7 @@ Host: www.google.com
 
 ### 修改nginx.conf
 
-```
+```nginx
 #user  nobody;
 worker_processes  1;
 
