@@ -1,4 +1,4 @@
-# Mysql中谓词使用date_format的优化
+# mysql中谓词使用date_format的优化  时间日期使用索引
 
 优化前：
 
