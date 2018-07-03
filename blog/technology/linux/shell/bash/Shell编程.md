@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # Shell编程
 
 shell :弱类型、 解释型语言
@@ -348,7 +352,7 @@ http://www.runoob.com/linux/linux-shell-process-control.html
 
 #### 示例
 
-如果/etc/inittab文件的行数大于50，就显示好大的文件；
+##### 如果/etc/inittab文件的行数大于50，就显示好大的文件；
 
 ```
 #!/bin/bash
@@ -376,6 +380,15 @@ bash -x shell 文件 ：debug 执行文件
 
 
 
+
+##### 判断文件夹是否存在
+
+```sh
+#如果文件夹不存在，创建文件夹
+if [ ! -d "/myfolder" ]; then
+  mkdir /myfolder
+fi
+```
 
 
 
@@ -592,7 +605,7 @@ done
 
 
 
- 
+
 
 练习：使用echo输出10个随机数，并且一行显示。提示：$RANDOM
 
