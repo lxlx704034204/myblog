@@ -288,7 +288,7 @@ PUT /index/type/id
 PUT /ecommerce/product/1
 {
     "name" : "gaolujie yagao",
-    "desc" :  "gaoxiao meibai",
+    "desc" :  "gaoxiao ≥meibai",
     "price" :  30,
     "producer" :      "gaolujie producer",
     "tags": [ "meibai", "fangzhu" ]
