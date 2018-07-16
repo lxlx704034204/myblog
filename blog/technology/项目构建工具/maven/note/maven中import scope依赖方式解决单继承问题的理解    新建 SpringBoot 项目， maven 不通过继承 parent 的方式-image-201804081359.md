@@ -2,7 +2,9 @@
 
 
 
-# maven中import scope依赖方式解决单继承问题的理解
+# maven中import scope依赖方式解决单继承问题的理解    新建 SpringBoot 项目， maven 不通过继承 parent 的方式
+
+## 分析现状
 
 在maven多模块项目中，为了保持模块间依赖的统一，常规做法是在parent model中，使用dependencyManagement预定义所有模块需要用到的dependency(依赖)
 
@@ -30,11 +32,7 @@
     </dependencyManagement>
 ```
 
-
-
 然后，子model根据实际需要引入parent中预定义的依赖
-
-
 
 ```
 <dependencies>
@@ -45,9 +43,7 @@
     </dependencies>
 ```
 
-
-
-好处：
+### 好处：
 
 1、依赖统一管理(parent中定义，需要变动dependency版本，只要修改一处即可)；
 
@@ -57,6 +53,8 @@
 
  
 
+### 问题:
+
 但是，问题也出现了：
 
 单继承：maven的继承跟java一样，单继承，也就是说子model中只能出现一个parent标签；
@@ -65,7 +63,7 @@ parent模块中，dependencyManagement中预定义太多的依赖，造成pom文
 
 如何让这些依赖可以分类并清晰的管理？
 
- 
+### 解决办法:
 
 问题解决：import scope依赖
 
@@ -81,11 +79,7 @@ parent模块中，dependencyManagement中预定义太多的依赖，造成pom文
 
 示例：
 
- 
-
-
-
-```
+```xml
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -99,8 +93,6 @@ parent模块中，dependencyManagement中预定义太多的依赖，造成pom文
         </dependencies>
     </dependencyManagement>
 ```
-
-
 
  maven编译后，下载了pom文件，在maven的本地仓库下查看pom文件如下：
 

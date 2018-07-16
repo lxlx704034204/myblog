@@ -71,7 +71,8 @@ ROUND_UP
 写成如下便可通过
 
 ```java
-BigDecimal num3 = num1.divide(num2,4,BigDecimal.ROUND_HALF_UP);//保留4位小数点,四舍五入
+BigDecimal num3 = num1.divide(num2,4,BigDecimal.ROUND_HALF_UP);//保留4位小数点,四舍五入 如下等价
+BigDecimal num3 = num1.divide(num2,4,RoundingMode.HALF_UP);//保留4位小数点,四舍五入
 ```
 
  

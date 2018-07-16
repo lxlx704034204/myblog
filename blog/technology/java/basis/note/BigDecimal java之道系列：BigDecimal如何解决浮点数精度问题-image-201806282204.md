@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # Java之道系列：BigDecimal如何解决浮点数精度问题
 
  
@@ -96,7 +100,7 @@
 
 那么BigDecimal又是如何解决这个问题的？
 
-## [BigDecimal](http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/file/70e3553d9d6e/src/share/classes/java/math/BigDecimal.java)
+## BigDecimal
 
 BigDecimal的解决方案就是，不使用二进制，而是使用十进制（BigInteger）+小数点位置(scale)来表示小数，
 
@@ -121,13 +125,9 @@ BigDecimal的解决方案就是，不使用二进制，而是使用十进制（B
 ## scale
 
 加法运算时，根据下面的公式scale更新为两个BigDecimal中较大的那个scale即可。
-
-------
-
-X*0.1n0.1n + Y*0.1m0.1m == X*0.1n0.1n + (Y*0.1m−n0.1m−n) * 0.1n0.1n == (X+Y*0.1m−n0.1m−n) * 0.1n0.1n，其中n>mn>m
-
-------
-
+$$
+X*0.1n + Y*0.1m == X*0.1n + (Y*0.1m−n) * 0.1n == (X+Y*0.1m−n) * 0.1n，其中n>m
+$$
 相应的代码如下，
 
 ```
@@ -183,7 +183,9 @@ X*0.1n0.1n + Y*0.1m0.1m == X*0.1n0.1n + (Y*0.1m−n0.1m−n) * 0.1n0.1n == (X+Y*
 
 ------
 
-X*0.1n0.1n * Y*0.1m0.1m == (X*Y)*0.1n+m0.1n+m
+$$
+X*0.1n * Y*0.1m == (X*Y)*0.1n+m
+$$
 
 ------
 
@@ -233,7 +235,7 @@ X*0.1n0.1n * Y*0.1m0.1m == (X*Y)*0.1n+m0.1n+m
     } 
 ```
 
-## [BigInteger](http://hg.openjdk.java.net/jdk7u/jdk7u/jdk/file/70e3553d9d6e/src/share/classes/java/math/BigInteger.java)
+## BigInteger
 
 BigInteger可以表示任意精度的整数。当你使用long类型进行运算，可能会产生溢出时就要考虑使用BigInteger了。BigDecimal就使用了BigInteger作为backend。 
 那么BigInteger是如何做到可以表示任意精度的整数的？答案是使用**数组**来表示，看下面这个栗子就很直观了，
