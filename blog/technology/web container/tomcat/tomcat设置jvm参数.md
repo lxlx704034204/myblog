@@ -17,9 +17,11 @@ http://blog.chinaunix.net/uid-29632145-id-4697079.html
 
 要添加在tomcat 的bin 下catalina.sh 里，位置cygwin=false前 。注意引号要带上,红色的为新添加的.
 
-\# OS specific support.  $var _must_ be set to either true or false.
-**JAVA_OPTS="-Xms512m -Xmx512m -XX:ParallelGCThreads=8 -XX:PermSize=128m -XX:MaxPermSize=256m"** 
+```sh
+# OS specific support.  $var _must_ be set to either true or false.
+JAVA_OPTS="-Xms512m -Xmx512m -XX:ParallelGCThreads=8 -XX:PermSize=128m -XX:MaxPermSize=256m"
 cygwin=false
+```
 
  
 
