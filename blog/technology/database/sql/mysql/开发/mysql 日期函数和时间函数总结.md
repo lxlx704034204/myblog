@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # mysql日期函数和时间函数总结
 
 ## **MySQL 获得当前日期时间 函数**
@@ -146,9 +150,11 @@ select from_unixtime(1218169800, '%Y %D %M %h:%i:%s %x'); -- '2008 8th August 12
 
 ## **MySQL 日期时间计算函数**
 
+### 日期加减date_add
+
  MySQL 为日期增加一个时间间隔：date_add()
 
-```
+```sql
 set @dt = now();
 
 select date_add(@dt, interval 1 day); -- add 1 day
@@ -166,7 +172,7 @@ select date_add(@dt, interval -1 day); -- sub 1 day
 
 MySQL adddate(), addtime()函数，可以用 date_add() 来替代。下面是 date_add() 实现 addtime() 功能示例：
 
-```
+```sql
 mysql> set @dt = '2008-08-09 12:12:33';
 
 mysql>
@@ -201,7 +207,7 @@ mysql> select date_sub('1998-01-01 00:00:00', interval '1 1:1:1' day_second);
 
 MySQL date_sub() 日期时间函数 和 date_add() 用法一致，不再赘述。
 
- 
+### 日期、时间相减函数：datediff(date1,date2), timediff(time1,time2)
 
 MySQL 日期、时间相减函数：datediff(date1,date2), timediff(time1,time2)
 
@@ -233,7 +239,9 @@ timestampdiff(unit,datetime_expr1,datetime_expr2) --
 
 请看示例部分：
 
-```
+
+
+```sql
 select timestamp('2008-08-08'); -- 2008-08-08 00:00:00
 select timestamp('2008-08-08 08:00:00', '01:01:01'); -- 2008-08-08 09:01:01
 select timestamp('2008-08-08 08:00:00', '10 01:01:01'); -- 2008-08-18 09:01:01
@@ -250,6 +258,10 @@ select datediff('2008-08-08 12:00:00', '2008-08-01 00:00:00'); -- 7
 ```
 
 MySQL timestampdiff() 函数就比 datediff() 功能强多了，datediff() 只能计算两个日期（date）之间相差的天数。
+
+
+
+第一种：TIMESTAMPDIFF函数，需要传入三个参数，第一个是比较的类型，可以比较FRAC_SECOND、SECOND、 MINUTE、 HOUR、 DAY、 WEEK、 MONTH、 QUARTER或 YEAR几种类型，第二个和第三个参数是待比较的两个时间，比较是后一个时间减前一个时间，具体用法如下:
 
  
 

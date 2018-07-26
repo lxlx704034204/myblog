@@ -129,25 +129,68 @@ Map<String, String> phoneBook people.stream()
 
 使用含有`mergeFunction`参数的函数，本示例修改方案，**当出现相同key，则value相加**，如：
 
-```
-public class MapDuplicateKeyTest {
+```java
+public class Student {
+	 public String name;
+	 public Integer marks;
 
+	 public Student(String name, Integer marks) {
+	  this.setName(name);
+	  this.setMarks(marks);
+	 }
+
+	 public String getName() {
+	  return name;
+	 }
+
+	 public void setName(String name) {
+	  this.name = name;
+	 }
+
+	 public Integer getMarks() {
+	  return marks;
+	 }
+
+	 public void setMarks(Integer marks) {
+	  this.marks = marks;
+	 }
+
+	 @Override
+	 public String toString() {
+	  return getName();
+	 }
+}
+```
+
+
+
+```java
+    /**
+     * <B>Description:</B> list转map  当出现相同key，则value相加 <br>
+     * <B>Create on:</B> 2018/7/17 下午1:58 <br>
+     *
+     * @author xiangyu.ye
+     */
     @Test
     public void mapkey() {
-        List<Entity> list = new ArrayList<>();
-        list.add(new Entity("20170728120", 1));
-        list.add(new Entity("20170728119", 3));
-        list.add(new Entity("20170728119", 2));
+        //key 是一样的处理方式
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("20170728120", 1));
+        list.add(new Student("20170728119", 3));
+        list.add(new Student("20170728119", 2));
+        list.add(new Student("20170728121", null));
 
-        Map<String, Integer> map = list.stream().collect(
-                Collectors.toMap(Entity::getKey, Entity::getValue, (s, a) -> s + a));
+        //这个如果value是null会报空指针异常,所以一定要过滤 null
+        Map<String, Integer> map = list.stream().filter(m-> Objects.nonNull(m.getMarks())).collect(
+                Collectors.toMap(Student::getName, Student::getMarks, (value1, value2) -> value1 + value2 ));
+
+        //这个就没问题,但是很怪增加复制 如果当出现相同key，则value相加 逻辑处理起来变复杂
+//        Map<String, Integer> map = list.stream().collect(
+//                HashMap::new, (m, v) -> m.put(v.getName(), v.getMarks()), HashMap::putAll);
 
 
-        map.entrySet().stream().forEach(e -> System.out.println(e.getKey() + " = " + e.getValue()));
-
+        System.out.println(JSON.toJSONString(map));
     }
-
-} 
 ```
 
 结果：
