@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 详解Java8特性之新的日期时间 API LocalDateTime LocalDate LocalTime
 
 # 吐槽
@@ -143,7 +147,7 @@ P2Y5M19D
 
 以前我们用的日期格式化的类是`java.text.SimpleDateFormat`，Java 8 提供的日期格式化类是`java.time.format.DateTimeFormatter`，下面写个例子
 
-```
+```java
 @Test
 public void test5() {
     // 获取预定义的格式，DateTimeFormatter类预定了很多种格式
@@ -162,7 +166,7 @@ public void test5() {
     // 将字符串转换成日期
     LocalDate date = LocalDate.parse(strNow2, formatter);
     System.out.println(date);
-}12345678910111213141516171819
+} 
 ```
 
 输出结果

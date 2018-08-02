@@ -100,7 +100,6 @@ public static final long MILLIS_PER_DAY = 24 * MILLIS_PER_HOUR; // 1天的毫秒
 
 ```
 DateUtils.isSameDay(new Date(), new Date()); // true  
-
 ```
 
 ### boolean isSameDay(Calendar cal1, Calendar cal2)
@@ -124,7 +123,6 @@ DateUtils.parseDate("2017年06月03日 23时51分44秒", "yyyy-MM-dd HH:mm:ss", 
 ```
 Date d3 = DateUtils.addYears(new Date(), 3); // 2020-06-04 00:06:21  
 Date d3 = DateUtils.addYears(new Date(), -2); // 2015-06-04 00:06:21  
-
 ```
 
 ### Date addMonths(Date date, int amount)
