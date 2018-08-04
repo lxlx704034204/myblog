@@ -36,6 +36,15 @@ wx.request({
 })
 ```
 
+## 跳转
+
+```
+const url = '../poDistribution/main'
+wx.navigateTo({ url })
+```
+
+
+
 ## 提示
 
 ```js

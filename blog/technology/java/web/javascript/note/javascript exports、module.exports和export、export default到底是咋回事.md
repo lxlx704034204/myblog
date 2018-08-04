@@ -83,7 +83,7 @@ console.log(a) // 打印为 {a : 200}
 
 #### testEs6Export.js
 
-```
+```js
 'use strict'
 //导出变量
 export const a = '100';  
@@ -107,7 +107,7 @@ export default m;
 
 #### index.js
 
-```
+```js
 //index.js
 'use strict'
 var express = require('express');
