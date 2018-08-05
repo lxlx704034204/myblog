@@ -69,81 +69,51 @@ console.log('支持Promise!');
 
 ## 简单Promise例子1
 
-我们先看一个最简单的Promise例子：生成一个0-2之间的随机数，如果小于1，则等待一段时间后返回成功，否则返回失败：
-
 ```js
 function test(resolve, reject) {
-    var timeOut = Math.random() * 2;
-    console.log('set timeout to: ' + timeOut + ' seconds.');
-    setTimeout(function () {
-        if (timeOut < 1) {
-            console.log('call resolve()...');
-            resolve('200 OK');
-        }
-        else {
-            console.log('call reject()...');
-            reject('timeout in ' + timeOut + ' seconds.');
-        }
-    }, timeOut * 1000);
+    if (true) {
+        //处理逻辑成功的情况执行resolve
+        resolve('resolve执行了');
+    } else {
+        //处理逻辑失败的情况执行reject
+        reject('reject执行了');
+    }
 }
 
-test(function (result) {
-   console.log('成功：' + result);
-}, function (reason) {
-    console.log('失败：' + reason);
-})
-```
-
-这个`test()`函数有两个参数，这两个参数都是函数，如果执行成功，我们将调用`resolve('200 OK')`，如果执行失败，我们将调用`reject('timeout in ' + timeOut + ' seconds.')`。可以看出，`test()`函数只关心自身的逻辑，并不关心具体的`resolve`和`reject`将如何处理结果。
-
-
-
-有了执行函数，我们就可以用一个Promise对象来执行它，并在将来某个时刻获得成功或失败的结果：
-
-```js
-
 //没有promise写法
-/*test(function (resolve) {
+test(function (resolve) {
     console.log('成功：' + resolve);
 }, function (reject) {
     console.log('失败：' + reject);
-});*/
+});
 
 //promise写法1
-/*
 var p1 = new Promise(test);
-var p2 = p1.then((resolve) => {
-    console.log('成功：' + resolve);
-}).catch((reject) => {
-        console.log('失败：' + reject)
-    }
-);
-*/
-
-
-//promise写法2
-/*var p1 = new Promise(test);
-var p2 = p1.then((resolve) => {
-    console.log('成功：' + resolve);
-});
-var p3 = p2.catch((reject) => {
-    console.log('失败：' + reject);
-});*/
-
-
-//promise写法3
-var p1 = new Promise(test);
-var p2 = p1.then((resolve) => {
+p1.then((resolve) => {
     console.log('成功：' + resolve);
 }, (reject) => {
     console.log('失败：' + reject);
 });
 
+//promise写法2
+var p1 = new Promise(test);
+p1.then((resolve) => {
+    console.log('成功：' + resolve);
+});
+p1.catch((reject) => {
+    console.log('失败：' + reject);
+});
+
+//promise写法3
+new Promise(test).then((resolve) => {
+    console.log('成功：' + resolve);
+}).catch((reject) => {
+        console.log('失败：' + reject)
+    }
+);
 ```
 
  
-
-
 
 ## Promise例子2
 

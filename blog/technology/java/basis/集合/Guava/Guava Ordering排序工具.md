@@ -1,4 +1,6 @@
-# Guava Ordering排序工具
+# Guava Ordering排序工具  
+
+推荐直接使用java8 推荐文章: java8 让代码更优雅之List排序
 
 /Users/jerryye/backup/studio/AvailableCode/basis/guava/guava_demo/src/main/java/com/gtt/basicutilities/OrderingTest.java
 
@@ -19,12 +21,11 @@
         City city3 = new City("ShenZhen", 100020, 33.8);
         List<City> cities = Lists.newArrayList(city1, city2, city3);
         //构建 根据 population列排序的比较器
-        Ordering<City> ordering = Ordering.natural().nullsLast().onResultOf(new Function<City, Integer>() {
-            public Integer apply(City foo) {
-                return -foo.getPopulation();  //降序  默认是升序
-            }
-        });
-        //排序 
+        Ordering<City> ordering = Ordering
+                .natural()
+                .nullsLast()
+                .onResultOf(m -> -m.getPopulation());//降序  默认是升序
+        //排序打印结果
         Collections.sort(cities, ordering);
         for (City city : cities) {
             System.out.println(city);

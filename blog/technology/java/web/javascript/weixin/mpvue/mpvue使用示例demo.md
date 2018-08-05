@@ -38,9 +38,17 @@ wx.request({
 
 ## 跳转
 
+跳转指定页面
+
 ```
 const url = '../poDistribution/main'
 wx.navigateTo({ url })
+```
+
+返回上一页
+
+```
+wx.navigateBack({ delta: 1 })// 返回上一页
 ```
 
 

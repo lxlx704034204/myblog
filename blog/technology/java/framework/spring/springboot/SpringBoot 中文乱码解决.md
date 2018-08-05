@@ -10,11 +10,11 @@
 
 增加如下配置：
 
-```
+```properties
 spring.http.encoding.force=true
 spring.http.encoding.charset=UTF-8
 spring.http.encoding.enabled=true
-server.tomcat.uri-encoding=UTF-81234
+server.tomcat.uri-encoding=UTF-8 
 ```
 
 此时拦截器中返回的中文已经不乱码了，但是controller中返回的数据依旧乱码。
@@ -29,7 +29,7 @@ produces="text/plain;charset=UTF-8"1
 
 这种方法的弊端是限定了数据类型，继续查找资料，在stackoverflow上发现解决办法，是在配置类中增加如下代码：
 
-```
+```java
 @Configuration
 public class CustomMVCConfiguration extends WebMvcConfigurerAdapter {
 
@@ -52,7 +52,7 @@ public class CustomMVCConfiguration extends WebMvcConfigurerAdapter {
             ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(false);
     }
-}1234567891011121314151617181920212223
+}
 ```
 
 便可以解决SpringBoot的中文乱码问题了。 
