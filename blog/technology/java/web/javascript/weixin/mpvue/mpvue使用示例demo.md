@@ -71,3 +71,35 @@ wx.navigateBack({ delta: 1 })// 返回上一页
           })
 ```
 
+
+
+## 页面标题
+
+```js
+import Vue from 'vue'
+import App from './login'
+
+const app = new Vue(App)
+app.$mount()
+
+export default {
+  config: {
+    navigationBarTitleText: '登录'
+  }
+}
+
+```
+
+
+
+## 获取系统信息 屏幕高宽
+
+```js
+wx.getSystemInfo({
+  success: res => {
+    this.windowWidth = res.windowWidth
+    this.windowHeight = res.windowHeight
+  }
+})
+```
+

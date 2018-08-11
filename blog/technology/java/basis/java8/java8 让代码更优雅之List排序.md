@@ -176,7 +176,7 @@ public void testSort_with_comparatorReverse() throws Exception {
 
 Lambda提供了更复杂的表达式，还可以先对name排序再根据age进行排序：
 
-```
+```java
 @Test
 public void testSort_with_multipleComparator() throws Exception {
 

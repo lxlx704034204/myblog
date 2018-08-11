@@ -2,10 +2,6 @@
 
 ## 说明
 
-![image-20180803172650171](../../../var/folders/f1/bv046xq17hb29l881ch_5db80000gn/T/abnerworks.Typora/image-20180803172650171.png)
-
-
-
 assests放置的是组件的资源，static放置的是非组件的资源。
 
 比如说即static下的文件资源作为src路径传入组件中，文件的path是可以被解析了，而assets则不行。
