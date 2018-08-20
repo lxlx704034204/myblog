@@ -1,27 +1,30 @@
-问了好多人，都不知道group_concat这个函数。
+[TOC]
 
- 
+
+
+# mysql group_concat函数详解
+
+## 说明
 
 这个函数好啊，能将相同的行组合起来，省老事了。
 
- 
-
 MySQL中group_concat函数
 
-完整的语法如下：
+## 完整的语法
 
+```
 group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator '分隔符'])
+```
 
  
 
-基本查询
+## 基本查询 
 
- 
+```
+select * from aa;  
+```
 
-Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-1. select * from aa;  
-
+```
 +------+------+
 | id| name |
 +------+------+
@@ -33,17 +36,15 @@ Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a1
 |3 | 500 |
 +------+------+
 6 rows in set (0.00 sec)
-
- 
+```
 
 以id分组，把name字段的值打印在一行，逗号分隔(默认)
 
- 
+```
+select id,group_concat(name) from aa group by id;  
+```
 
-Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-1. select id,group_concat(name) from aa group by id;  
-
+```
 +------+--------------------+
 | id| group_concat(name) |
 +------+--------------------+
@@ -52,17 +53,15 @@ Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a1
 |3 | 200,500|
 +------+--------------------+
 3 rows in set (0.00 sec)
-
- 
+```
 
 以id分组，把name字段的值打印在一行，分号分隔
 
- 
+```
+select id,group_concat(name separator ';') from aa group by id; 
+```
 
-Java代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-1. select id,group_concat(name separator ';') from aa group by id;  
-
+```
 +------+----------------------------------+
 | id| group_concat(name separator ';') |
 +------+----------------------------------+
@@ -71,19 +70,17 @@ Java代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a
 |3 | 200;500 |
 +------+----------------------------------+
 3 rows in set (0.00 sec)
-
- 
+```
 
 以id分组，把去冗余的name字段的值打印在一行，
 
 逗号分隔
 
- 
+```
+select id,group_concat(distinct name) from aa group by id;  
+```
 
-Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-1. select id,group_concat(distinct name) from aa group by id;  
-
+```
 +------+-----------------------------+
 | id| group_concat(distinct name) |
 +------+-----------------------------+
@@ -92,17 +89,15 @@ Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a1
 |3 | 200,500 |
 +------+-----------------------------+
 3 rows in set (0.00 sec)
-
- 
+```
 
 以id分组，把name字段的值打印在一行，逗号分隔，以name排倒序
 
- 
+```
+select id,group_concat(name order by name desc) from aa group by id;  
+```
 
-Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-1. select id,group_concat(name order by name desc) from aa group by id;  
-
+```
 +------+---------------------------------------+
 | id| group_concat(name order by name desc) |
 +------+---------------------------------------+
@@ -111,14 +106,13 @@ Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a1
 |3 | 500,200|
 +------+---------------------------------------+
 3 rows in set (0.00 sec)
+```
 
  
 
-测试sql，项目中用到的。
+## 测试sql，项目中用到的。 
 
-Sql代码  [![收藏代码](group_concat函数详解_files/42789f09-3578-4468-a197-75b2296685dd.png)]()
-
-```
+```Mysql
 SELECT  
         EMPLOYEES.EMPID  
         ,EMPLOYEES.EMPNAME  
@@ -129,11 +123,11 @@ SELECT
         ,EMPLOYEES.OUTSIDEEMAIL  
         ,EMPLOYEES.DELEFLAG  
         ,EMPLOYEES.EMPCLASS  
-        ,(CONCAT('[', <span style="color: #ff0000;">GROUP_CONCAT</span>  
+        ,(CONCAT('[', GROUP_CONCAT  
 (ROLE.Role_Name SEPARATOR '],['), ']')) AS ROLENAME  
         ,(concat( '[', (  
             SELECT  
-                    <span style="color: #ff0000;">GROUP_CONCAT</span>  
+                    GROUP_CONCAT 
 (DEPARTMENTS.DEPARTMENTNAME separator '],[')  
                 FROM  
                     EMP_ROLE_DEPT  
@@ -158,8 +152,8 @@ SELECT
                 ON (ROLE_EMP.EMP_ID = EMPLOYEES.EMPID)  
             LEFT JOIN ROLE  
                 ON (ROLE_EMP.ROLE_ID = ROLE.ROLE_ID)  
-<span style="color: #ff0000;">    GROUP BY  
-        EMPLOYEES.EMPID</span>  
+ 			GROUP BY  
+        EMPLOYEES.EMPID 
   
     HAVING  
         EMPLOYEES.EMPID LIKE '%%'  

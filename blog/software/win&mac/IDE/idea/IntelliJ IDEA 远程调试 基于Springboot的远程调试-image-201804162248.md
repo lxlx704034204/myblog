@@ -20,7 +20,7 @@
 填写name，配置Host地址（远程服务器地址）和端口（选一个未被占用的端口）。然后复制For JDK1.4.x下面的参数，示例配置的端口为5005：
 
 ```
--Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=50051
+-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
 ```
 
 ![这里写图片描述](image-201804162248/20170712125914958.png)

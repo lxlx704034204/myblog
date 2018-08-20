@@ -10,7 +10,7 @@
 
 首先是profile配置，在pom.xml中添加如下profile的配置：
 
-```
+```xml
 <profiles>
     <profile>
         <!-- 本地开发环境 -->
@@ -55,7 +55,7 @@
 
 在pom中的build节点下，配置资源文件的位置，如下所示：
 
-```
+```xml
     <build>
         <resources>
             <resource>
@@ -88,7 +88,7 @@
 
 在resource节点中可以增加如下节点
 
-```
+```xml
 <resource>
     <directory>src/main/resources</directory>
     <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
@@ -112,7 +112,7 @@ url=${url}
 
 ### 方式一，使用profile的properties
 
-```
+```xml
 <properties>
     <profiles.active>test</profiles.active>
     <url>localhost</url>
