@@ -14,6 +14,8 @@ getApp().globalData.isPages = 0
 
 ## 请求:
 
+原生:
+
 ```js
 import * as api from '@/utils/api'
 var that = this
@@ -35,6 +37,41 @@ wx.request({
   }
 })
 ```
+
+fly
+
+```js
+this.$http.post(api.MessageBoardAdd,
+  {
+    'content': that.commentText,
+    'fromUserNo': userInfo.userNo,
+    'replyMsgSysNo': that.type === 0 ? '' : that.msgList[that.chosedIndex].msgSysNo,
+    'sourceKey': that.sourceKey,
+    'sourceType': that.sourceType,
+    'toUserNo': toUserNo
+  })
+  .then((res) => {
+    if (res.data.code === '200') {
+      console.log(res.data.data)
+      that.getMsgList()
+      that.commentText = ''
+      wx.pageScrollTo({
+        scrollTop: that.windowHeight + 100,
+        duration: 300
+      })
+    } else {
+      wx.showToast({
+        title: res.data.msg,
+        duration: 2000,
+        icon: 'none'
+      })
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+```
+
+
 
 ## 跳转
 
